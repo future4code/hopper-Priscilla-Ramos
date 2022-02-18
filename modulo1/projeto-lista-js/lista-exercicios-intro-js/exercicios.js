@@ -117,33 +117,58 @@ function retornaUltimoElemento(array) {
 function trocaPrimeiroEUltimo(array) {
   // implemente sua lógica aqui
 
-  // const ultimo = array[array.length -1] 
-  // const primeiro = 0
-  // array.splice(primeiro, ultimo)
-  // array.splice(ultimo, primeiro)
+  let posInic = array[0]
+  let posFinal = array[array.length -1] 
+  array[0] = array[array.length-1]
+  array[array.length-1] = posInic
 
-  // return array
-
+  return array
+}
 // EXERCÍCIO 12
 function checaIgualdadeDesconsiderandoCase(string1, string2) {
   // implemente sua lógica aqui
-
-  // const transformada1 = string1.toUpperCase()
-  // const transformada2 = string2.toUpperCase()
-
-  // return transformada1 === transformada2
+ 
+    let maiuscString1 = string1.toUpperCase()
+    let maiuscString2 = string2.toUpperCase()
+    const igualdade = maiuscString1 === maiuscString2
+ 
+    return igualdade
 }
 
 // EXERCÍCIO 13
 function checaRenovacaoRG() {
   // implemente sua lógica aqui
+  const anoAtual2 = prompt("Qual ano atual?")
+  const anoNasc = prompt("Qual ano de nascimento?")
+  const anoCarteiraIdent = prompt("Qual ano foi emitida sua carteira de identidade?")
+  
+   const idade2 = anoAtual2 - anoNasc
+   const vencimento = anoAtual2 - anoCarteiraIdent // volta 5, 10, 15
 
+  const menosVinte = (idade2 <= 20) && (vencimento >= 5) // 5 em 5 anos 
+  const entreVinteECinq = (idade2 > 20 && idade2 < 50) && (vencimento >= 10) // 10 em 10 anos
+  const acimaDeCinquenta = (idade2 >= 50) && (vencimento >= 15)  // 15 em 15 anos
+
+  const renovacao = menosVinte || entreVinteECinq || acimaDeCinquenta
+
+ console.log (renovacao)
 }
 
 // EXERCÍCIO 14
 function checaAnoBissexto(ano) {
   // implemente sua lógica aqui
 
+//  let quatrocentos = ((ano*100) / 400) >= 0
+//  let quatro = (ano / 4) >= 0  
+//  let naoBissexto = ((ano / 400) < 0) && ((ano / 4) < 0) // (t && t) - se for true é bissexto 
+ 
+//  const verificaResto = quatrocentos && quatro !== naoBissexto
+//  const verificaRestoNaoBissexto = verificaResto   // se for diferente vai ser true
+
+
+
+
+ return (verificaResto)
 }
 
 // EXERCÍCIO 15
