@@ -123,13 +123,14 @@
 // console.log (arrayDeObj(obj1))
 // console.log (arrayDeObj(obj2))
 
-// //3. a) Crie uma variável de escopo global que guarde um `array` vazio chamada `carrinho`
+
+//3. a) Crie uma variável de escopo global que guarde um `array` vazio chamada `carrinho`
 
 // const carrinho = []
 
-// // b) Crie três novos objetos que representem frutas de um sacolão. 
-// // Eles devem ter as seguintes propriedades: nome (`string`) 
-// // e disponibilidade (`boolean` - devem começar como `true`)
+// b) Crie três novos objetos que representem frutas de um sacolão. 
+// Eles devem ter as seguintes propriedades: nome (`string`) 
+// e disponibilidade (`boolean` - devem começar como `true`)
 
 // const fruta1 = {
 //     nome: "mamão",
@@ -146,8 +147,10 @@
 //     disponibilidade: "true"
 // }
 
-// // c) Crie uma função que **receba** um objeto fruta por **parâmetro** e coloque-a dentro do 
-// // array de `carrinho`. Invoque essa função passando os três objetos criados. 
+
+// c) Crie uma função que **receba** um objeto fruta por **parâmetro** e coloque-a dentro do 
+// array de `carrinho`. Invoque essa função passando os três objetos criados. 
+
 
 // function recebeFruta(frutas) {
 //     const arrayCarrinho = carrinho.push(frutas)
@@ -160,7 +163,8 @@
 
 
 
-// // // d) Imprima a variável `carrinho` e garanta que ela agora seja um **array preenchido com três objetos.**
+
+// // d) Imprima a variável `carrinho` e garanta que ela agora seja um **array preenchido com três objetos.**
 
 // console.log(carrinho)
 
