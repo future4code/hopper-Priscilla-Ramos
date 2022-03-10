@@ -47,25 +47,31 @@
 
 //1. 1. Pergunte ao usuário quantos bichinhos de estimação ele tem e guarde esse dado em uma variável. 
 
-
+const numeroBichinhosEstimaçao = Number(prompt("Quantos bichinhos de estimação você tem?"))
 
 // a) Se a quantidade for 0, imprima no console "Que pena! Você pode adotar um pet!"
 
-// const bichinhosEstimaçao = Number(prompt("Quantos bichinhos de esstimação você tem?"))
-     
-
-// if (bichinhosEstimaçao === "0"); {
-//     console.log("Que pena! Você pode adotar um pet!"){
-
-// } else {
-
-// }
-
-//     for (let i = 0; i < bichinhosEstimaçao; i++) {
-//         const arrayDeBichinhos = prompt("digite o nome dos seus pets")
-//     } 
-    
+    if (numeroBichinhosEstimaçao === "0") {
+        console.log("Que pena! Você pode adotar um pet!")
+    } else {
         
+    }
+    
+
+    for (let i = 0; i < numeroBichinhosEstimaçao; i++) {
+        const digiteNomeDeBichinhos = prompt("digite o nome dos seus pets")
+        const arrayDeNomes = digiteNomeDeBichinhos.push()
+    }
+
+
+console.log(digiteNomeDeBichinhos)
+
+
+}
+
+
+
+
     // b) Se a quantidade for maior que 0, solicite que o usuário digite os nomes deles,
     // um por um, e guarde esses nomes em um array 
 
