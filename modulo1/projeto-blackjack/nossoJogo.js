@@ -15,20 +15,7 @@ console.log("Bem vindo(a) ao jogo de Blackjack!")
 
 const novaRodada = confirm("Quer iniciar uma nova rodada?")
 
-if (novaRodada) {
-
-      let cartaUsuario1 = comprarCarta()
-      let cartaUsuario2 = comprarCarta()
-
-      let cartaComputador1 = comprarCarta()
-      let cartaComputador2 = comprarCarta()
-
-      let pontuacaoUsuario = (cartaUsuario1.valor + cartaUsuario2.valor)
-      let pontuacaoComputador = (cartaComputador1.valor + cartaComputador2.valor)
-
-      console.log(`Usuário - cartas: ${cartaUsuario1.texto}, ${cartaUsuario2.texto} - pontuação: ${pontuacaoUsuario}`);
-      console.log(`Computador - cartas: ${cartaComputador1.texto}, ${cartaComputador2.texto} - pontuação: ${pontuacaoComputador}`)
-
+const pontuacao = (pontuacaoUsuario, pontuacaoComputador) => {
       if (pontuacaoUsuario > pontuacaoComputador) {
             console.log("Usuário ganhou!")
       } else if (pontuacaoUsuario < pontuacaoComputador) {
@@ -36,7 +23,28 @@ if (novaRodada) {
       } else {
             console.log("Empate!")
       }
-} else {
-      console.log("O jogo acabou!")
 }
 
+const jogo = (novaRodada) => {
+      if (novaRodada) {
+
+            let cartaUsuario1 = comprarCarta()
+            let cartaUsuario2 = comprarCarta()
+
+            let cartaComputador1 = comprarCarta()
+            let cartaComputador2 = comprarCarta()
+
+            let pontuacaoUsuario = (cartaUsuario1.valor + cartaUsuario2.valor)
+            let pontuacaoComputador = (cartaComputador1.valor + cartaComputador2.valor)
+
+            console.log(`Usuário - cartas: ${cartaUsuario1.texto}, ${cartaUsuario2.texto} - pontuação: ${pontuacaoUsuario}`);
+            console.log(`Computador - cartas: ${cartaComputador1.texto}, ${cartaComputador2.texto} - pontuação: ${pontuacaoComputador}`)
+
+            pontuacao(pontuacaoUsuario, pontuacaoComputador)
+            
+      } else {
+            console.log("O jogo acabou!")
+      }
+}
+
+jogo(novaRodada)
