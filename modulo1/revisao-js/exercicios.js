@@ -15,12 +15,16 @@ function retornaArrayInvertido(array) {
 
 // EXERCÍCIO 03  
 function retornaArrayOrdenado(array) {
- 
+    
 }
  
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-  
+  let pares = array.filter((array)=>{
+    return array % 2 === 0
+  })
+  return pares
+}
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
