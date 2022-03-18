@@ -74,16 +74,16 @@ function retornaObjetoEntreDoisNumeros(num1, num2) {
 
 // EXERCÍCIO 08
 function retornaNPrimeirosPares(n) {
-  // let array = [] 
-//   let array2 = [] 
-//   for (let i = 0; i < n*2; i++) {
-//     if (i % 2 === 0) {
-//       array = [...array2, i]
-//       array2 = array
-//     }
-//   }
-//   return array2
-// }
+  let array = [] 
+  let array2 = [] 
+  for (let i = 0; i < n*2; i++) {
+    if (i % 2 === 0) {
+      array = [...array2, i]
+      array2 = array
+    }
+  }
+  return array2
+}
 
 // EXERCÍCIO 09
 function classificaTriangulo(ladoA, ladoB, ladoC) {
