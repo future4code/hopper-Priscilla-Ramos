@@ -98,13 +98,27 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
+//   let segundoMaior = 0
+//   for (let i = 0; i < array.length; i++) {
+//     if (array[i] > maior) {
+//       maior = array[i]
+//     }
+//   for(let i = 0; i < maior; i++){
+//     if (maior[i] > segundoMaior) {
+//       segundoMaior = maior
+//     }
+//   }
+//   }
+//   const filtraSegundoMaioreMenor = array.filter((maior, indice)=>{
 
+// })
 }
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
-
-}
+  filme.atores = [" Meryl Streep", " Anne Hathaway", " Emily Blunt", " Stanley Tucci"]
+ return `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por${filme.atores}.`
+} 
 
 // EXERCÍCIO 12
 function retornaPessoaAnonimizada(pessoa) {
