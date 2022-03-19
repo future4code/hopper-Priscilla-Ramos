@@ -121,15 +121,41 @@ return novaPessoa
 // EXERCÍCIO 13A
 function retornaPessoasAutorizadas(pessoas) {
 
+const novoArray = pessoas.filter((pessoas, indice)=>{
+  return pessoas.nome &&
+  pessoas.idade > 14 &&
+  pessoas.idade < 60 &&
+  pessoas.altura >= 1.5
+})
+return novoArray
 }
 
 // EXERCÍCIO 13B
 function retornaPessoasNaoAutorizadas(pessoas) {
 
+  const novoArray2 = pessoas.filter((pessoas)=>{
+    return pessoas.nome &&
+    pessoas.idade <= 14 &&
+    pessoas.idade >= 60 &&
+    pessoas.altura < 1.5
+  })
+  return novoArray2
 }
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
+  
+  
+// let somaCompras
+// for (let i = 0; i < contas.compras.length; i++){
+//   somaCompras += contas.compras[i]
+// }
+// let saldoSemCompras
+// for (let i = 0; i < contas.saldoTotal.length; i++){
+//   saldoSemCompras = contas.saldoTotal [i] - somaCompras 
+// }
+
+return contas.somaCompras, contas.saldoSemCompras
 
 }
 
