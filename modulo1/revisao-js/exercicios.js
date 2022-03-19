@@ -98,21 +98,12 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
-//   let segundoMaior = 0
-//   for (let i = 0; i < array.length; i++) {
-//     if (array[i] > maior) {
-//       maior = array[i]
-//     }
-//   for(let i = 0; i < maior; i++){
-//     if (maior[i] > segundoMaior) {
-//       segundoMaior = maior
-//     }
-//   }
-//   }
-//   const filtraSegundoMaioreMenor = array.filter((maior, indice)=>{
-
-// })
-}
+  array.sort((a, b) => { return a - b })
+  const segundoMaior = array[array.length-2]
+  const segundoMenor = array[1]
+  const novoArray = [segundoMaior, segundoMenor]
+  return novoArray
+  }
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
