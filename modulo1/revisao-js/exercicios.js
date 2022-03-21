@@ -132,29 +132,27 @@ function retornaPessoasAutorizadas(pessoas) {
 
 // EXERCÍCIO 13B
 function retornaPessoasNaoAutorizadas(pessoas) {
-  // const novoArray2 = pessoas.filter((pessoas, indice) => {
-  //   return pessoas.nome &&
-  //     pessoas.idade <= 14 &&
-  //     pessoas.idade >= 60 &&
-  //     pessoas.altura < 1.5
-  // })
-  // return novoArray2
-}
+//   let novoArray2 = pessoas.filter((pessoas, indice) => {
+//     return pessoas.nome &&
+//       pessoas.idade <= 14 &&
+//       pessoas.idade >= 60 &&
+//       pessoas.altura < 1.5
+//   })
+//   return novoArray2
+// }
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
-
-
-  // let somaCompras
+  
+  //   let somaCompras
   // for (let i = 0; i < contas.compras.length; i++) {
   //   somaCompras += contas.compras[i]
   // }
-  // let saldoSemCompras
-  // for (let i = 0; i < contas.saldoTotal.length; i++) {
-  //   saldoSemCompras = contas.saldoTotal[i] - somaCompras
-  // }
 
-  // return contas.somaCompras, contas.saldoSemCompras
+  // let saldoSemCompras = contas.map((contas, indice) =>{
+  //   return contas.saldoTotal 
+  // })
+  // return contas
 
 }
 
@@ -167,7 +165,7 @@ function retornaArrayOrdenadoAlfabeticamente(consultas) {
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
-//   return consultas.sort((a,b) => { 
-//     return a.dataDaConsulta < b.dataDaConsulta ? -1 : a.dataDaConsulta > b.dataDaConsulta ? 1 : 0;
-// })
+  //   return consultas.sort((a,b) => { 
+  //     return a.dataDaConsulta < b.dataDaConsulta ? -1 : a.dataDaConsulta > b.dataDaConsulta ? 1 : 0;
+  // })
 }
