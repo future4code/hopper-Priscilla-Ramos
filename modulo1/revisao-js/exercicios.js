@@ -132,14 +132,13 @@ function retornaPessoasAutorizadas(pessoas) {
 
 // EXERCÍCIO 13B
 function retornaPessoasNaoAutorizadas(pessoas) {
-//   let novoArray2 = pessoas.filter((pessoas, indice) => {
-//     return pessoas.nome &&
-//       pessoas.idade <= 14 &&
-//       pessoas.idade >= 60 &&
-//       pessoas.altura < 1.5
-//   })
-//   return novoArray2
-// }
+  let novoArray2 = pessoas.filter((pessoas, indice) => {
+    return pessoas.idade <= 14 ||
+      pessoas.idade > 60 ||
+      pessoas.altura < 1.5
+  })
+  return novoArray2
+}
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
