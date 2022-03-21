@@ -74,9 +74,9 @@ function retornaObjetoEntreDoisNumeros(num1, num2) {
 
 // EXERCÍCIO 08
 function retornaNPrimeirosPares(n) {
-  let array = [] 
-  let array2 = [] 
-  for (let i = 0; i < n*2; i++) {
+  let array = []
+  let array2 = []
+  for (let i = 0; i < n * 2; i++) {
     if (i % 2 === 0) {
       array = [...array2, i]
       array2 = array
@@ -99,71 +99,75 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
   array.sort((a, b) => { return a - b })
-  const segundoMaior = array[array.length-2]
+  const segundoMaior = array[array.length - 2]
   const segundoMenor = array[1]
   const novoArray = [segundoMaior, segundoMenor]
   return novoArray
-  }
+}
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
   filme.atores = [" Meryl Streep", " Anne Hathaway", " Emily Blunt", " Stanley Tucci"]
- return `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por${filme.atores}.`
-} 
+  return `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por${filme.atores}.`
+}
 
 // EXERCÍCIO 12
 function retornaPessoaAnonimizada(pessoa) {
-const novaPessoa = {...pessoa}
-novaPessoa.nome = "ANÔNIMO"
-return novaPessoa
+  const novaPessoa = { ...pessoa }
+  novaPessoa.nome = "ANÔNIMO"
+  return novaPessoa
 }
 
 // EXERCÍCIO 13A
 function retornaPessoasAutorizadas(pessoas) {
 
-const novoArray = pessoas.filter((pessoas, indice)=>{
-  return pessoas.nome &&
-  pessoas.idade > 14 &&
-  pessoas.idade < 60 &&
-  pessoas.altura >= 1.5
-})
-return novoArray
+  const novoArray = pessoas.filter((pessoas, indice) => {
+    return pessoas.nome &&
+      pessoas.idade > 14 &&
+      pessoas.idade < 60 &&
+      pessoas.altura >= 1.5
+  })
+  return novoArray
 }
 
 // EXERCÍCIO 13B
 function retornaPessoasNaoAutorizadas(pessoas) {
-
-  const novoArray2 = pessoas.filter((pessoas)=>{
-    return pessoas.nome &&
-    pessoas.idade <= 14 &&
-    pessoas.idade >= 60 &&
-    pessoas.altura < 1.5
-  })
-  return novoArray2
+  // const novoArray2 = pessoas.filter((pessoas, indice) => {
+  //   return pessoas.nome &&
+  //     pessoas.idade <= 14 &&
+  //     pessoas.idade >= 60 &&
+  //     pessoas.altura < 1.5
+  // })
+  // return novoArray2
 }
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
-  
-  
-// let somaCompras
-// for (let i = 0; i < contas.compras.length; i++){
-//   somaCompras += contas.compras[i]
-// }
-// let saldoSemCompras
-// for (let i = 0; i < contas.saldoTotal.length; i++){
-//   saldoSemCompras = contas.saldoTotal [i] - somaCompras 
-// }
 
-return contas.somaCompras, contas.saldoSemCompras
+
+  // let somaCompras
+  // for (let i = 0; i < contas.compras.length; i++) {
+  //   somaCompras += contas.compras[i]
+  // }
+  // let saldoSemCompras
+  // for (let i = 0; i < contas.saldoTotal.length; i++) {
+  //   saldoSemCompras = contas.saldoTotal[i] - somaCompras
+  // }
+
+  // return contas.somaCompras, contas.saldoSemCompras
 
 }
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-
+  return consultas.sort((a, b) => {
+    return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
+  })
 }
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
+//   return consultas.sort((a,b) => { 
+//     return a.dataDaConsulta < b.dataDaConsulta ? -1 : a.dataDaConsulta > b.dataDaConsulta ? 1 : 0;
+// })
 }
