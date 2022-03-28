@@ -5,22 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Controle de Estoque</title>
+    <link rel="stylesheet" type="text/CSS" href="./estilizacao.css"/>
 </head>
 <body>
-    <div>
-        <p>Lojinha da Pri</p>
-    </div>
-    
-    <div>
+    <header>
+        <div id="cabecalio">
+            <h1>Bem-vind@ ao <em>Lojinha da Pri</em>!</h1>
+            <h3>A fatia de bolo mais fofinha para animar seu dia!</h3>
+        </div>
+    </header>
+
+    <div class="centraliza-cor">
         <a href="./index.html">Página Inicial</a>
         <a href="./ctrl-estoque.html">Controle de Estoque</a>
         <a href="./add-produto.html">Adicionar Produto</a>
         <a href="./funcionarios.html">Funcionários</a>
     </div>
 
+
     <h2>Controle de Estoque</h2>
 
-    <table>
+    <table class="cor-de-fundo-branca"> 
         <tr>
             <th>Foto</th>
             <th>Descrição</th>
@@ -29,28 +34,28 @@
         </tr>
 
         <tr>
-            <td><img src="./img/Bolo-de-cenoura-com-cobertura-de-brigadeiro.jpg" alt="Bolo de Cenoura"/></td>
+            <td><img src="./img/Bolo-de-cenoura-com-cobertura-de-brigadeiro.jpg" alt="Bolo de Cenoura" style width="300px"></td>
             <td> Bolo de Cenoura com Cobertura de brigadeiro </td>
             <td> R$ 5,00 </td>
             <td> 15 </td>
         </tr>
 
         <tr>
-            <td><img src="./img/bolo-de-aniversario-de-chocolate.jpg" alt="Bolo de Chocolate"/></td>
+            <td><img src="./img/bolo-de-aniversario-de-chocolate.jpg" alt="Bolo de Chocolate" style width="300px"></td>
             <td> Bolo de Chocolate com Cobertura de Brigadeiro </td>
             <td> R$ 7,00 </td>
             <td> 10 </td>
         </tr>
 
         <tr>
-            <td><img src="./img/bolo-de-banana-especial.jpg" alt="Bolo de Banana"/></td>
+            <td><img src="./img/bolo-de-banana-especial.jpg" alt="Bolo de Banana" style width="300px"></td>
             <td> Bolo de Banana </td>
             <td> R$ 4,00 </td>
             <td> 17 </td>
         </tr>
 
         <tr>
-            <td><img src="./img/bolo-formigueiro2.jpg" alt="Bolo Formigueiro"/></td>
+            <td><img src="./img/bolo-formigueiro2.jpg" alt="Bolo Formigueiro" style width="300px"></td>
             <td> Bolo Formigueiro </td>
             <td> R$ 6,00 </td>
             <td> 10 </td>
@@ -58,13 +63,33 @@
         
         <!-- Crie mais uma linha desta tabela abaixo \/ -->
         <tr>
-            <td><img src="./img/bolo marmore.jpg" alt="Bolo Mármore"/></td>
+            <td><img src="./img/bolo marmore.jpg" alt="Bolo Mármore" style width="300px"></td>
             <td> Bolo Mármore </td>
             <td> R$ 5,00 </td>
             <td> 12 </td>
         </tr>
 
     </table>
+    <footer>
+        <div id="rodape">
+            <p>Siga-nos nas redes sociais!</p>
+
+            <span>
+                <img src="./img/insta.jpeg" alt="insta" style width="40px" />
+            </span>
+            <span>
+                <img src="./img/face.png" alt="face" style width="40px" />
+            </span>
+            <span>
+                <img src="./img/twit.png" alt="twitter" style width="50 px" />
+            </span>
+
+            <h4><u>Entre em contato conosco!</u></h4>
+            <p>e-mail: bolo@lojinhadapri.com.br</p>
+            <p><img src="./img/whats.jpg" style width="20 px" alt="whats logo"> 11 987649284</p>
+
+        </div>
+    </footer>
 
 </body>
 </html>
