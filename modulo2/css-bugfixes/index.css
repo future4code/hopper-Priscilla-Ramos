@@ -26,7 +26,7 @@ button:focus {
 }
 
 img {
-    width: 100px;
+    width: 50px;
 }
 
 div>p:first-child {
@@ -129,4 +129,9 @@ td button {
 
 #back-button:hover {
     background-color: #635a3d
+}
+
+.iguala-tamanho-imagem {
+    width: 50
+px;
 }
