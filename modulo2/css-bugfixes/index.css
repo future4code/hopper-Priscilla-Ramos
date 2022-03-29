@@ -138,6 +138,10 @@ input {
     border-radius: 5px;
     font-size: 10px;
     color: black;
+} 
+
+#centraliza-botao {     
+    text-align: center;
 }
 
 #back-button:hover {
