@@ -1,0 +1,27 @@
+*{
+    margin: 0px;
+    padding: 12px;
+}
+
+header, h3, h4 { 
+    text-align: center;
+}
+
+
+button {
+    font-size: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(179, 149, 168);
+    border-color: rgb(247, 246, 248);
+    color: white;
+}
+
+footer {
+    margin-top: 575px;
+    text-align: center;
+    background-color: rgb(234, 184, 247);
+}
+
+header {
+    background-color: rgb(234, 184, 247);
+}
