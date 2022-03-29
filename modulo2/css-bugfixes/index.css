@@ -142,6 +142,7 @@ input {
 
 #centraliza-botao {     
     text-align: center;
+    padding-top: 100px;
 }
 
 #back-button:hover {
