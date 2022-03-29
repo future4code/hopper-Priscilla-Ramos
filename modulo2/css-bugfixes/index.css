@@ -71,6 +71,7 @@ div>p:first-child {
 #container-de-descricao {
     background-color: #2274a5;
     color: white;
+    height: 300px;
 }
 
 #container-de-descricao>ol {
@@ -79,6 +80,7 @@ div>p:first-child {
 
 #container-para-comprar {
     background-color: #e7eb90;
+    height: 300px;
 }
 
 #container-para-comprar>p {
