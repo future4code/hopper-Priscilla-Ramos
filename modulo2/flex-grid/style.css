@@ -11,6 +11,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 5px;
 }
 
 footer {
@@ -22,35 +23,49 @@ footer {
     align-items: center;
 }
 
+.container{
+    display: flex;
+    flex-direction: row;
+    height: 840px;
+}
+
 #container-acessos {
     display: flex;
     flex-direction: column;
     background-color: #f2d0e0;
-    height: 0px;
-    width: 300px;
-
+    height: 840px;
+    width: 200px;
+    flex-grow: 1;
 }
 
 #container-bolos {
-    padding-left: 300px;
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 20px;
     column-gap: 20px;
+    flex-grow: 5;
+    border: 20px solid white;
     
 }
 
 .centralizar{
     display: grid;
     justify-items: center;
-    border: darkgray;
+    border: 2px solid darkgray;
+    
    
 }
 
 .menu{
-    display: flex;
+    display: grid;
+    grid-template-columns: 30px 240px 5px;
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: #f2d0e0;
+}
+
+.bolo-imagem{
+    width: 200px;
+    height: 200px;
 }
