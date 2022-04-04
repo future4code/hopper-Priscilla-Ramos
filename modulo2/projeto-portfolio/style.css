@@ -1,11 +1,11 @@
 *{
     margin: 0px;
     padding: 0px;
-    /* height: 100vh; */
-    /* width: 100vw;  */
     font-family: 'Ubuntu', sans-serif; 
     background-color: #fdf5e6; 
 }
+
+/* ----gerais---- */
 
 
 #pai{
@@ -25,18 +25,11 @@ header{
     height: 240px;
     width: 100vw;
     background-color: #ffc5bf;
-    font-size: 50px;
+    font-size: 70px;
     justify-content: space-around;
     align-items: center;
+    font-family: 'Lobster', cursive;
 
-}
-
-#sistema-loja{
-    padding-top: 20px;
-}
-
-.botao-link{
-    height: 100px;
 }
 
 button {
@@ -50,11 +43,6 @@ button {
     border-color: #FFA07A;
 }
 
-#bot{
-    background-color: #ffc5bf;
-    height: 50px;
-}
-
 #menu{
     display: flex;
     height: 50px;
@@ -63,21 +51,73 @@ button {
     justify-content: space-around;
 }
 
-#cores{
-    height: 300px;
-}
-
-.botoes-projeto{
-   padding-top: 20px;
-    display:flex;
-    justify-content: space-around;
-}
-
 #fotoPri{
     width: 200px;
     height: 200px;
     border-radius: 150px;
 }
+
+
+#cores{
+    height: 300px;
+}
+
+#rodape2{
+    margin-top: 100px;
+    height: 100px;
+    display: flex;
+    background-color: #FFA07A;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+}
+
+#rodape{
+    height: 100px;
+    display: flex;
+    background-color: #FFA07A;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.fundo-laranja{
+    background-color: #FFA07A;
+}
+
+.imagem-rodape1{
+    width: 15px;
+    height: 15px;
+    justify-content: center;
+    background-color: #FFA07A
+}
+
+.rosa1{
+    background-color: #ffc5bf;
+    height: 20px;
+}
+
+.rosa2{
+    background-color: #ffaea5;
+    height: 20px;
+}
+
+.verde{
+    background-color: #008B8B;
+    height: 20px;
+}
+
+.menta{
+    background-color: #b6cfb6;
+    height: 20px;
+}
+
+.cor-laranja{
+    font-weight: bolder;
+    background-color: #FFA07A;
+}
+
+/* ---home--- */
 
 #aboutme{
     display: flex;
@@ -99,16 +139,76 @@ button {
     height: 730px;
 }
 
-#rodape2{
-    margin-top: 370px;
-    height: 100px;
-    display: flex;
-    background-color: #FFA07A;
-    flex-direction: row;
-    justify-content:space-around;
-    align-items: center;
+#lista-habilidades{
+    padding: 0;
+    margin: 0;
+    list-style-type: decimal;
 }
 
+
+
+.unordered-list{
+    list-style-type: circle;
+}
+
+/* ----contato--- */
+
+#contato{
+    padding-top: 20px;
+}
+
+.botao-submit{
+    font-size: 20px;
+    background-color: #fdf5e6;
+    color: #ffaea5;
+    cursor: pointer;
+    width: 100px;
+	height:50px;
+	border-radius: 30px;
+    border-color: #FFA07A;
+}
+
+#caixa-mensagem{
+    height: 200px;
+    width: 400px;
+}
+
+.formata-input{
+    font-size: 20px;
+    background-color: #fdf5e6;
+    color: #ffaea5;
+    width: 250px;
+	height:50px;
+	border-radius: 30px;
+    border-color: #FFA07A;
+}
+
+#footer-contatos{
+    height: 50px;
+}
+
+
+
+/* ----projetos---- */
+
+.botoes-projeto{
+    padding-top: 20px;
+     display:flex;
+     justify-content: space-around;
+ }
+
+#sistema-loja{
+    padding-top: 20px;
+}
+
+.botao-link{
+    height: 100px;
+}
+
+#bot{
+    background-color: #ffc5bf;
+    height: 50px;
+}
 
 #listaJs{
     padding-top: 20px;
@@ -136,49 +236,6 @@ button {
     width: 150px;
 }
 
-#rodape{
-    height: 100px;
-    display: flex;
-    background-color: #FFA07A;
-    flex-direction: row;
-    justify-content:space-around;
-    align-items: center;
-}
 
-.fundo-laranja{
-    background-color: #FFA07A;
-}
 
-.imagem-rodape1{
-    width: 15px;
-    height: 15px;
-    justify-content: center;
-    background-color: #FFA07A
-}
 
-/* cores */
-
-.rosa1{
-    background-color: #ffc5bf;
-    height: 20px;
-}
-
-.rosa2{
-    background-color: #ffaea5;
-    height: 20px;
-}
-
-.verde{
-    background-color: #008B8B;
-    height: 20px;
-}
-
-.menta{
-    background-color: #b6cfb6;
-    height: 20px;
-}
-
-.cor-laranja{
-    font-weight: bolder;
-    background-color: #FFA07A;
-}
