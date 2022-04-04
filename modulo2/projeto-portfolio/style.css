@@ -1,7 +1,7 @@
 *{
     margin: 0px;
     padding: 0px;
-    /* height: 120vh; */
+    /* height: 100vh; */
     /* width: 100vw;  */
     font-family: 'Ubuntu', sans-serif; 
     background-color: #fdf5e6; 
@@ -28,7 +28,11 @@ header{
     font-size: 50px;
     justify-content: space-around;
     align-items: center;
-    
+
+}
+
+#sistema-loja{
+    padding-top: 20px;
 }
 
 .botao-link{
@@ -64,7 +68,7 @@ button {
 }
 
 .botoes-projeto{
-    height: 400px;
+   padding-top: 20px;
     display:flex;
     justify-content: space-around;
 }
@@ -95,6 +99,15 @@ button {
     height: 730px;
 }
 
+#rodape2{
+    margin-top: 370px;
+    height: 100px;
+    display: flex;
+    background-color: #FFA07A;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+}
 
 
 #listaJs{
@@ -111,14 +124,14 @@ button {
     height: 800px;
 }
 
-#tecnologia{
+.tecnologia{
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
 }
 
-#imagens-tecnologia{
+.imagens-tecnologia{
     height: 120px;
     width: 150px;
 }
