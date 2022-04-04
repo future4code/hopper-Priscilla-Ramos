@@ -1,69 +1,171 @@
 *{
     margin: 0px;
     padding: 0px;
-    height: 100%;
-    width: 100%;
+    /* height: 120vh; */
+    /* width: 100vw;  */
+    font-family: 'Ubuntu', sans-serif; 
+    background-color: #fdf5e6; 
+}
+
+
+#pai{
+    display:flex;
+    flex-direction: column;
+}
+
+
+header{
+    height: 240px;
+}
+
+
+#cabecalho {
+    display: flex;
+    flex-direction: row;
+    height: 240px;
+    width: 100vw;
+    background-color: #ffc5bf;
+    font-size: 50px;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+.botao-link{
+    height: 100px;
 }
 
 button {
-    font-size: 15px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: rgb(179, 149, 168);
-    border-color: rgb(247, 246, 248);
-    color: white;
+    font-size: 20px;
+    background-color: #fdf5e6;
+    color: #ffaea5;
+    cursor: pointer;
+    width: 250px;
+	height:50px;
+	border-radius: 30px;
+    border-color: #FFA07A;
 }
 
-.menu{
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
+#bot{
+    background-color: #ffc5bf;
     height: 50px;
+}
+
+#menu{
+    display: flex;
+    height: 50px;
+    background-color: #ffc5bf;
+    border-color: #ddc8ae;
+    justify-content: space-around;
+}
+
+#cores{
+    height: 300px;
+}
+
+.botoes-projeto{
+    height: 400px;
+    display:flex;
+    justify-content: space-around;
+}
+
+#fotoPri{
+    width: 200px;
+    height: 200px;
+    border-radius: 150px;
 }
 
 #aboutme{
     display: flex;
+    flex-direction: column;
+    height: 50px;
+    text-align: center;
+}
+
+#formacao{
+    display: grid;
     flex-direction: row;
-    background-color: aquamarine;
-    height: max-content;
-    justify-items: center;
+    height: 250px;
 }
 
 #curriculo{
-    background-color: brown;
-    display: flex;
-    height: max-content;
-}
-
-header {
     display: grid;
-    justify-items: center;
-    height: 100px;
     grid-template-columns: 1fr;
-    background-color: rgb(234, 184, 247);
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 730px;
 }
 
-.rodape1{
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
-    grid-template-rows: 1fr;
-    background-color: rgb(234, 184, 247);
-    justify-content: center;
+
+
+#listaJs{
+    padding-top: 20px;
+    width: 100vw;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    height: 30px;
-
 }
 
-.imagem{
+#imagem-listaJS{
+    width: 800px;
+    height: 800px;
+}
+
+#tecnologia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+#imagens-tecnologia{
+    height: 120px;
+    width: 150px;
+}
+
+#rodape{
+    height: 100px;
+    display: flex;
+    background-color: #FFA07A;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.fundo-laranja{
+    background-color: #FFA07A;
+}
+
+.imagem-rodape1{
     width: 15px;
     height: 15px;
     justify-content: center;
+    background-color: #FFA07A
 }
 
-.rodape2{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    background-color: rgb(234, 184, 247);
-    justify-content: center;
-    height: 50px;
+/* cores */
+
+.rosa1{
+    background-color: #ffc5bf;
+    height: 20px;
+}
+
+.rosa2{
+    background-color: #ffaea5;
+    height: 20px;
+}
+
+.verde{
+    background-color: #008B8B;
+    height: 20px;
+}
+
+.menta{
+    background-color: #b6cfb6;
+    height: 20px;
+}
+
+.cor-laranja{
+    font-weight: bolder;
+    background-color: #FFA07A;
 }
