@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(248, 241, 231);
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(107, 173, 151);
+    height: 3vh;
+    padding: 2vw;
+}
+
+#cor-fundo-nome{
+    background-color: rgb(107, 173, 151);
+    font-size: 4vh;
+    font-weight: bolder;
+}
+
+.videos{
+    padding-top: 5vh;
+    padding-left: 2vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 10vh;
+}
+
+.tamanho-video-home{
+    height: 30vh;
+    width: 23vw;
+    box-shadow: 1vh 1vh 3vw ;
+}
+
+.nome-video{
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.tamanho-video{
+    padding-left: 2vw;
+    height: 75vh;
+    width: 60vw;
+}
+
+#formata-voltar {
+    padding-left: 10vw;
+}
+
+a{
+    background-color: rgb(248, 241, 231); 
+}
+
+.rodape{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    background-color: rgb(107, 173, 151);
+    height: 8vh;
+}
