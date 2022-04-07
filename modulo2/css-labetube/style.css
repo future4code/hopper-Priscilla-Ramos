@@ -31,7 +31,7 @@
 .tamanho-video-home{
     height: 30vh;
     width: 23vw;
-    box-shadow: 1vh 1vh 3vw ;
+    border: 1px solid black;
 }
 
 .nome-video{
@@ -61,4 +61,35 @@ a{
     font-size: larger;
     background-color: rgb(107, 173, 151);
     height: 8vh;
+}
+
+
+@media screen and (min-device-width: 320px) and  (max-device-width: 480px){
+    .cabecalho{
+        height: 10vh;
+    }
+    .videos{
+        display: flex;
+        flex-direction: column;
+        row-gap: 3vh;
+        font-size: 1em;
+    }
+    .tamanho-video-home{
+        height: 25%;
+        width: 100%;
+    }
+    .tamanho-video{
+        height: 75%;
+        width: 75%;
+    }
+    .nome-video{
+        font-size: 1.1em;
+        font-weight: bold;
+        border: 1px solid black;
+    }
+    .rodape{
+        font-size: 1em;
+        font-weight: bold;
+        height: 10vh;
+    }
 }
