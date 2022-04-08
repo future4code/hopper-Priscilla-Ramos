@@ -64,17 +64,19 @@ a{
     height: 8vh;
 }
 
-/* ---celular--- */
+/* ---tablet--- */
 
-@media screen and (min-device-width:320px) and (max-device-width: 1180px){
+@media screen and (min-device-width:668px) and (max-device-width: 1180px){
     .cabecalho{
-        height: 10vh;
+        height: 12vh;
     }
     .videos{
         display: flex;
         flex-direction: column;
         row-gap: 3vh;
         font-size: 1em;
+        padding-right: 2vw;
+        padding-top: 3vw
     }
     .tamanho-video-home{
         height: 25%;
@@ -85,12 +87,48 @@ a{
         width: 75%;
     }
     .nome-video{
-        font-size: 1em;
+        font-size: 1.8em;
         font-weight: bold;
         border: 1px solid black;
     }
     .rodape{
+        font-size: 2em;
+        align-items: center;
+        font-weight: bold;
+        height: 10vh;
+    }
+}
 
+
+/* ---celular--- */
+
+@media screen and (min-device-width:320px) and (max-device-width: 667px){
+    .cabecalho{
+        height: 10vh;
+    }
+    .videos{
+        display: flex;
+        flex-direction: column;
+        row-gap: 2vh;
+        font-size: 1em;
+        padding-right: 2vw;
+        padding-top: 3vw
+    }
+    .tamanho-video-home{
+        height: 25%;
+        width: 100%;
+    }
+    .tamanho-video{
+        height: 75%;
+        width: 75%;
+    }
+    .nome-video{
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid black;
+    }
+    .rodape{
+        font-size: 1.1em;
         align-items: center;
         font-weight: bold;
         height: 10vh;
