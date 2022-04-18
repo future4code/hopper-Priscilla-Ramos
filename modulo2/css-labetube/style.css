@@ -11,12 +11,13 @@
     background-color: rgb(107, 173, 151);
     height: 3vh;
     padding: 2vw;
-}
-
-#cor-fundo-nome{
-    background-color: rgb(107, 173, 151);
     font-size: 4vh;
     font-weight: bolder;
+}
+
+.cor-fundo-nome{
+    background-color: rgb(107, 173, 151);
+    
 }
 
 .videos{
@@ -31,7 +32,7 @@
 .tamanho-video-home{
     height: 30vh;
     width: 23vw;
-    box-shadow: 1vh 1vh 3vw ;
+    border: 1px solid black;
 }
 
 .nome-video{
@@ -61,4 +62,75 @@ a{
     font-size: larger;
     background-color: rgb(107, 173, 151);
     height: 8vh;
+}
+
+/* ---tablet--- */
+
+@media screen and (min-device-width:668px) and (max-device-width: 1180px){
+    .cabecalho{
+        height: 12vh;
+    }
+    .videos{
+        display: flex;
+        flex-direction: column;
+        row-gap: 3vh;
+        font-size: 1em;
+        padding-right: 2vw;
+        padding-top: 3vw
+    }
+    .tamanho-video-home{
+        height: 25%;
+        width: 100%;
+    }
+    .tamanho-video{
+        height: 75%;
+        width: 75%;
+    }
+    .nome-video{
+        font-size: 1.8em;
+        font-weight: bold;
+        border: 1px solid black;
+    }
+    .rodape{
+        font-size: 2em;
+        align-items: center;
+        font-weight: bold;
+        height: 10vh;
+    }
+}
+
+
+/* ---celular--- */
+
+@media screen and (min-device-width:320px) and (max-device-width: 667px){
+    .cabecalho{
+        height: 10vh;
+    }
+    .videos{
+        display: flex;
+        flex-direction: column;
+        row-gap: 2vh;
+        font-size: 1em;
+        padding-right: 2vw;
+        padding-top: 3vw
+    }
+    .tamanho-video-home{
+        height: 25%;
+        width: 100%;
+    }
+    .tamanho-video{
+        height: 75%;
+        width: 75%;
+    }
+    .nome-video{
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid black;
+    }
+    .rodape{
+        font-size: 1.1em;
+        align-items: center;
+        font-weight: bold;
+        height: 10vh;
+    }
 }
