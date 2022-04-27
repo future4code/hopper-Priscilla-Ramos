@@ -18,8 +18,9 @@ export class SecaoComentario extends Component {
 	}
 
 	onChangeComentario = (event) => {
-		console.log(event)
+		this.setState(comentario)
 	}
+
 	render() {
 		return <CommentContainer>
 			<InputComentario
