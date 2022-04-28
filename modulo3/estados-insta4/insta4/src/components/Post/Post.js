@@ -8,6 +8,7 @@ import iconeCoracaoPreto from '../../img/favorite.svg'
 import iconeComentario from '../../img/comment_icon.svg'
 import { SecaoComentario } from '../SecaoComentario/SecaoComentario'
 
+
 const PostContainer = styled.div`
   border: 1px solid gray;
   width: 300px;
@@ -49,10 +50,18 @@ class Post extends React.Component {
   }
 
   onClickCurtida = () => {
-    this.setState({
-      curtido: !this.state.curtido,
-      numeroCurtidas: this.state.numeroCurtidas + 1
-    })
+
+    if (this.state.curtido === false) {
+      this.setState({
+        curtido: !this.state.curtido,
+        numeroCurtidas: this.state.numeroCurtidas + 1
+      })
+    } else {
+      this.setState({
+        curtido: !this.state.curtido,
+        numeroCurtidas: this.state.numeroCurtidas - 1
+      })
+    }
   }
 
   onClickComentario = () => {
@@ -82,6 +91,8 @@ class Post extends React.Component {
     if (this.state.comentando) {
       componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario} />
     }
+
+    let somaCurtida
 
     return <PostContainer>
       <PostHeader>
