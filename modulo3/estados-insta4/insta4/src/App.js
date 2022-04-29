@@ -9,13 +9,25 @@ const MainContainer = styled.div`
   align-items: center;
 `
 
+const Forms = styled.input`
+  box-shadow: 10px 5px 5px black;
+  border-radius: 30px;
+  text-align: center; 
+  margin-top: 5vh;
+`
+
+const BotaoAdd = styled.button`
+  border-radius: 30px;
+  margin-top: 2vh;
+`
+
 class App extends React.Component {
 
   state = {
 
     post: [{
       nomeUsuario: 'paulinha',
-      fotoUsuario: 'https://picsum.photos/50/50',
+      fotoUsuario: "https://picsum.photos/50/50",
       fotoPost: 'https://picsum.photos/200/150'
     },
 
@@ -27,7 +39,7 @@ class App extends React.Component {
 
     {
       nomeUsuario: 'bananinha',
-      fotoUsuario: 'https://i.picsum.photos/id/782/536/354.jpg?hmac=eWN0fyMjNQNklPhoPoqUarvKzjk7zYoevQGyFR6NaX0',
+      fotoUsuario: "https://i.picsum.photos/id/782/536/354.jpg?hmac=eWN0fyMjNQNklPhoPoqUarvKzjk7zYoevQGyFR6NaX0",
       fotoPost: 'https://i.picsum.photos/id/78/536/354.jpg?hmac=r2RsVtx7T7KiXrJJGr0TF4NwbusRlpzbYTz8juHdEE4'
     }],
 
@@ -67,7 +79,9 @@ class App extends React.Component {
     const listaDeComponentes = this.state.post.map((posts) => {
       return (
         <p>
-          {posts.nomeUsuario} - {posts.fotoUsuario}- {posts.fotoPost}
+          {posts.nomeUsuario}
+          {posts.fotoUsuario}
+          {posts.fotoPost}
         </p>
       );
     });
@@ -75,31 +89,34 @@ class App extends React.Component {
     return (
 
       <MainContainer>
-        <Post />
+
+        <div>{listaDeComponentes}</div>
+
         <div>
-          <input
+
+          <Forms
             value={this.state.valorInputNome}
             onChange={this.onChangeInputNome}
             placeholder={"Nome"}
           />
 
-          <input
+          <Forms
             value={this.state.valorInputFotoUsuario}
             onChange={this.onChangeInputFotoUser}
             placeholder={"Foto User"}
           />
 
-          <input
+          <Forms
             value={this.state.valorInputFotoPost}
             onChange={this.onChangeInputFotoPost}
             placeholder={"Foto Post"}
           />
-
         </div>
 
-        <button onClick={this.adicionaPost}>Adicionar</button>
+        <BotaoAdd onClick={this.adicionaPost}>Adicionar</BotaoAdd>
 
       </MainContainer>
+
     );
   }
 }
