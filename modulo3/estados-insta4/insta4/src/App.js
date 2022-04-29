@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import Post from './components/Post/Post';
 
+
 const MainContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -25,7 +26,7 @@ class App extends React.Component {
 
   state = {
 
-    post: [{
+    arrayPost: [{
       nomeUsuario: 'paulinha',
       fotoUsuario: "https://picsum.photos/50/50",
       fotoPost: 'https://picsum.photos/200/150'
@@ -33,14 +34,14 @@ class App extends React.Component {
 
     {
       nomeUsuario: 'robertinho',
-      fotoUsuario: 'https://i.picsum.photos/id/744/536/354.jpg?hmac=bSwcAxDxfkwDQOJVwmXCbVdtrDKEo5SBPK1ccKLzQm4',
-      fotoPost: 'https://i.picsum.photos/id/742/536/354.jpg?hmac=tp8K-JsAUq02CLW7KTAa46dW_EmhZRZCP_jJZ1vUKnI'
+      fotoUsuario: 'https://i.picsum.photos/id/744/536/354',
+      fotoPost: 'https://i.picsum.photos/id/742/536/354'
     },
 
     {
       nomeUsuario: 'bananinha',
-      fotoUsuario: "https://i.picsum.photos/id/782/536/354.jpg?hmac=eWN0fyMjNQNklPhoPoqUarvKzjk7zYoevQGyFR6NaX0",
-      fotoPost: 'https://i.picsum.photos/id/78/536/354.jpg?hmac=r2RsVtx7T7KiXrJJGr0TF4NwbusRlpzbYTz8juHdEE4'
+      fotoUsuario: "https://i.picsum.photos/id/782/536/354",
+      fotoPost: 'https://i.picsum.photos/id/78/536/354'
     }],
 
     valorInputNome: '',
@@ -76,13 +77,11 @@ class App extends React.Component {
 
   render() {
 
-    const listaDeComponentes = this.state.post.map((posts) => {
+    const listaDeComponentes = this.state.arrayPost.map((posts) => {
       return (
-        <p>
-          {posts.nomeUsuario},
-          {posts.fotoUsuario},
-          {posts.fotoPos},
-        </p>
+       <div>
+          {posts.fotoUsuario} - {posts.nomeUsuario} - {posts.fotoPost},
+      </div>
       );
     });
 
@@ -90,29 +89,28 @@ class App extends React.Component {
 
       <MainContainer>
 
-        <Post> { listaDeComponentes} </Post>
+        <Post> {listaDeComponentes} </Post>
 
-        <div>
+          <div>
+            <Forms
+              value={this.state.valorInputNome}
+              onChange={this.onChangeInputNome}
+              placeholder={"Nome"}
+            />
 
-          <Forms
-            value={this.state.valorInputNome}
-            onChange={this.onChangeInputNome}
-            placeholder={"Nome"}
-          />
+            <Forms
+              value={this.state.valorInputFotoUsuario}
+              onChange={this.onChangeInputFotoUser}
+              placeholder={"Foto User"}
+            />
 
-          <Forms
-            value={this.state.valorInputFotoUsuario}
-            onChange={this.onChangeInputFotoUser}
-            placeholder={"Foto User"}
-          />
-
-          <Forms
-            value={this.state.valorInputFotoPost}
-            onChange={this.onChangeInputFotoPost}
-            placeholder={"Foto Post"}
-          />
-        </div>
-
+            <Forms
+              value={this.state.valorInputFotoPost}
+              onChange={this.onChangeInputFotoPost}
+              placeholder={"Foto Post"}
+            />
+          </div>
+        
         <BotaoAdd onClick={this.adicionaPost}>Adicionar</BotaoAdd>
 
       </MainContainer>
