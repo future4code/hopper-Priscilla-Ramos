@@ -79,9 +79,9 @@ class App extends React.Component {
     const listaDeComponentes = this.state.post.map((posts) => {
       return (
         <p>
-          {posts.nomeUsuario}
-          {posts.fotoUsuario}
-          {posts.fotoPost}
+          {posts.nomeUsuario},
+          {posts.fotoUsuario},
+          {posts.fotoPos},
         </p>
       );
     });
@@ -90,7 +90,7 @@ class App extends React.Component {
 
       <MainContainer>
 
-        <div>{listaDeComponentes}</div>
+        <Post> { listaDeComponentes} </Post>
 
         <div>
 
