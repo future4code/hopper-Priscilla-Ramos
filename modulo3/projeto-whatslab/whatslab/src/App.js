@@ -10,9 +10,11 @@ class App extends React.Component {
     return (
 
       <div>
-        <Mensagens />
+        <Mensagens />  
+      
         </div>
 
+       
     );
   }
 }
