@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Cadastro from './components/Cadastro';
 import styled from 'styled-components';
+import UsersList from './components/UsersList';
 
 const MainContainer = styled.div`
   display: flex;
@@ -16,7 +17,8 @@ class App extends React.Component {
   state = {
     cadastros: [],
     valorInputName: "",
-    valorInputEmail: ""
+    valorInputEmail: "",
+    // redirect: false,
   }
 
   //joga o valor do input para o estado//
@@ -111,6 +113,25 @@ class App extends React.Component {
   }
 
 
+  //função que muda de tela -- ta dando erro... loop//
+
+  // mudaTela = () => {
+  //   const novoRedirect = {
+  //     redirect: !this.state.redirect
+  //   }
+
+  //   this.setState({redirect: novoRedirect})
+    
+    // if(this.state.novoRedirect) {
+    //   return <UsersList />
+    // }
+  // }
+
+  //  listaUsers = () => {
+  //    return <UsersList 
+  //    listaCadastro={this.listaCadastro}
+  //    />
+  //  }
 
 
   render() {
@@ -128,7 +149,6 @@ class App extends React.Component {
 
         {this.renderizaNaTela()}
         {listaCadastro}
-
 
       </MainContainer>
     );
