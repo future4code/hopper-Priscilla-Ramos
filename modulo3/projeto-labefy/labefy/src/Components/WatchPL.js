@@ -1,42 +1,25 @@
 import axios from "axios";
 import React from "react";
+import AddTrack from "./AddTrack"
 
 export default class WatchPL extends React.Component {
-
     state = {
-        resultado: [],
-        
+        cont: false
     }
-
-    componentDidMount() {
-        this.pegaPL()
-    }
-
-    //função chama pl criadas//
-
-    pegaPL = () => {
-
-        axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists', {
-            headers: {
-                Authorization: "priscilla-ramos-hopper"
-            }
-        })
-            .then((response) => {
-                this.setState({ resultado: response.data })
-            })
-            .catch((error) => {
-                console.log(error.response.data)
-                alert('não foi possível mostrar a lista')
-            })
-
+    
+    trocaValor = () =>{
+        this.setState({cont: !this.state.cont})
     }
 
     render() {
 
-        const listaPl = this.state.resultado.map((playlist) => {
-            return <li key={playlist.id}>
-                {`Nome:` + playlist.name}
-            </li>
+        const listaPL = this.props.playlists.map((pl) => {
+            
+            return <div>
+                <li>{pl.name} <span onClick={()=>this.trocaValor()}>+</span> </li>
+                {this.state.cont === false? "" : <AddTrack id = {pl.id}/>} 
+            </div>
+            
         })
 
 
@@ -44,7 +27,8 @@ export default class WatchPL extends React.Component {
             <div>
                 <h3>Watch Playlist</h3>
 
-                {this.listaPl}
+                {listaPL}
+               
             </div >
         )
     }
