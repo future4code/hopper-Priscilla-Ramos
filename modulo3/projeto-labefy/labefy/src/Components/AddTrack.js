@@ -9,8 +9,8 @@ export default class WatchPL extends React.Component {
         valorInputURL: "",
     }
 
-    
-    //funções controle de imput//
+
+    //funções controle de input//
 
     onChangeValorName = (event) => {
         this.setState({ valorInputName: event.target.value })
@@ -57,9 +57,10 @@ export default class WatchPL extends React.Component {
 
     render() {
 
+    
         return (
             <div>
-                <h3>Add track</h3>
+                <h3>Adicionar Playlist</h3>
 
                 <div>
 

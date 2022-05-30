@@ -4,49 +4,52 @@ import styled from 'styled-components';
 import AddPL from "./Components/AddPL";
 import AddTrack from "./Components/AddTrack";
 import DetailPL from "./Components/DetailPL";
-import Spotify from "./Components/Spotify";
+import Spotify from "./Components/DeletPL";
 import WatchPL from "./Components/WatchPL";
 
 
 class App extends React.Component {
 
   state = {
-    telaAtual: "addPL",
-    tela: 0,
+    tela: 1,
     playlists: []
   }
 
   componentDidMount() {
     this.pegaPL()
-}
+  }
 
-  // escolherTela = () => {
-  //   switch (this.state.telaAtual){
-  //     case "addPL":
-  //     return <AddPL/>
-  //     case "addTrack":
-  //       return <AddTrack/>
-  //     case  "detail":
-  //       return <DetailPL/>
-  //     case "watch":
-  //       return <WatchPL/>
-  //     case "spotify":
-  //       return <Spotify/>
-  //     default:
-  //       return <AddPL/>
-  // }}
+  //onclick para mudar tela//
 
+  irParaProximaTela = () => {
+    this.setState({ tela: this.state.tela + 1 })
+  }
+
+  voltarTela = () => {
+    this.setState({ tela: this.state.tela - 1})
+  }
+
+  //func para mudar entre telas//
+  
   mudaTela = () => {
     switch (this.state.tela) {
-      case 0:
+      case 1:
+        return <AddPL />
+      case 2:
         return <WatchPL
-          playlists={this.state.playlists} 
-          tela = {this.state.tela}
-          />
-      
-
+        playlists={this.state.playlists}
+        tela={this.state.tela}
+        />
+      case 3:
+        return <DetailPL 
+        playlists={this.state.playlists}
+        />
+      default:
+        return <AddPL />
     }
   }
+
+  //puxa as playlists criadas//
 
   pegaPL = () => {
 
@@ -67,18 +70,18 @@ class App extends React.Component {
   }
   render() {
 
-    
+
 
     return (
       <div>
         <div>
-          <button onClick={() => this.mudaTela("addPL")}>Home</button>
-          <button onClick={() => this.mudaTela("addTrack")}>AddTrack</button>
-          <button onClick={() => this.mudaTela("detail")}>Detail</button>
-          <button onClick={() => this.mudaTela("watch")}>WatchPL</button>
-          <button onClick={() => this.mudaTela("spotify")}>Spotify</button>
+
+          <button onClick={this.irParaProximaTela}>Próxima</button>
+          <button onClick={this.voltarTela}>Voltar</button>
+          
         </div>
         {this.mudaTela()}
+    
       </div>
     )
   }

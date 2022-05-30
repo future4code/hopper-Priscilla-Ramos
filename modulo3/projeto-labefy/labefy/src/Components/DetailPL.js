@@ -1,15 +1,21 @@
 import axios from "axios";
 import React from "react";
+import DeletPL from "./DeletPL"
 
 export default class DetailPL extends React.Component {
 
     state = {
-        resposta: []
+        resposta: [],
+        cont: false
     }
 
-    detalhesPL = async (playlistId) =>{
+    trocaValor = () =>{
+        this.setState({cont: !this.state.cont})
+    }
 
-        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks`
+    detalhesPL = async () =>{
+
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.id}/tracks`
         try{
             const response = await axios.get(url, {
                 headers: {
@@ -27,7 +33,6 @@ export default class DetailPL extends React.Component {
 
     render () {
 
-        
 
         return(
             <div>

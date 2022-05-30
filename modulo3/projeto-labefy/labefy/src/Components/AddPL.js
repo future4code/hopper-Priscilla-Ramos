@@ -4,7 +4,14 @@ import axios from "axios";
 export default class AddPL extends React.Component {
 
     state = {
-        valorInputName: ""
+        valorInputName: "",
+        cont: false
+    }
+
+    //função que altera o cont entre páginas//
+
+    trocaValor = () =>{
+        this.setState({cont: !this.state.cont})
     }
 
     //altera o estado pelo input//
@@ -45,7 +52,7 @@ export default class AddPL extends React.Component {
     
         return (
             <div>
-                <h3>Tela Add Playlist</h3>
+                <h3>Adicionar Playlist</h3>
 
                 <div>
                     <input
