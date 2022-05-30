@@ -2,15 +2,16 @@ import axios from "axios";
 import React from "react";
 import AddTrack from "./AddTrack"
 
+
 export default class WatchPL extends React.Component {
     state = {
         cont: false
     }
 
-    componentDidUpdate() {
-        this.deletaPL()
+    componentDidMount () {
+        // this.imprimePL()
     }
-
+    
     //altera valor do cont//
 
     trocaValor = () => {
@@ -21,7 +22,7 @@ export default class WatchPL extends React.Component {
 
     deletaPL = (id) => {
 
-        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}` //tem que ver pra puxar id//
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}` 
 
         axios.delete(url, {
             headers: {
@@ -31,6 +32,7 @@ export default class WatchPL extends React.Component {
             .then((response) => {
                 console.log(response.data)
                 alert('Playlist excluída!')
+                // this.imprimePL()     
             })
 
             .catch((error) => {
@@ -38,6 +40,7 @@ export default class WatchPL extends React.Component {
                 // alert('Erro: não foi possível deletar')
             })
     }
+
 
     render() {
 
@@ -47,6 +50,7 @@ export default class WatchPL extends React.Component {
                 <li>{pl.name} <button onClick={() => this.trocaValor()}>+</button> </li>
                 {this.state.cont === false ? "" : <AddTrack id={pl.id} />}
                 <button onClick={() => this.deletaPL(pl.id)}>x</button>
+               
             </div>
 
         })

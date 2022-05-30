@@ -2,9 +2,7 @@ import React from "react";
 import axios from 'axios';
 import styled from 'styled-components';
 import AddPL from "./Components/AddPL";
-import AddTrack from "./Components/AddTrack";
 import DetailPL from "./Components/DetailPL";
-import Spotify from "./Components/DeletPL";
 import WatchPL from "./Components/WatchPL";
 
 
@@ -39,10 +37,12 @@ class App extends React.Component {
         return <WatchPL
         playlists={this.state.playlists}
         tela={this.state.tela}
+        pegaPl={this.pegaPL}
         />
       case 3:
         return <DetailPL 
         playlists={this.state.playlists}
+        listaDeId = {this.listaDeId}
         />
       default:
         return <AddPL />
@@ -68,10 +68,16 @@ class App extends React.Component {
       })
 
   }
+
+  //função pra passar id pra Detalhes//
+
+  listaDeId = this.state.playlists.filter((pl)=>{
+    return <span>{pl.id}</span>
+  })
+
   render() {
-
-
-
+    
+ 
     return (
       <div>
         <div>
@@ -81,7 +87,7 @@ class App extends React.Component {
           
         </div>
         {this.mudaTela()}
-    
+         
       </div>
     )
   }

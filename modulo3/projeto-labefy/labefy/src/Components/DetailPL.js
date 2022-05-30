@@ -1,43 +1,57 @@
 import axios from "axios";
 import React from "react";
-import DeletPL from "./DeletPL"
+import App from "../App";
 
 export default class DetailPL extends React.Component {
 
     state = {
-        resposta: [],
+        musicas: [],
         cont: false
     }
 
-    trocaValor = () =>{
-        this.setState({cont: !this.state.cont})
+      //altera valor do cont//
+
+      trocaValor = () => {
+        this.setState({ cont: !this.state.cont })
     }
 
-    detalhesPL = async () =>{
+    //chama as músicas que tem em cada playlist//
 
-        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.id}/tracks`
-        try{
-            const response = await axios.get(url, {
-                headers: {
-                    Authorization: "priscilla-lucena-hopper"
-                }
-            }) 
-            this.setState ({resposta: response.data.result.tracks})
+    detalhesPL = () => {
+
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.listaDeId}/tracks`
+
+        axios.get(url, {
+            headers: {
+                Authorization: "priscilla-lucena-hopper"
+            }
+        }).then((response) => {
+            this.setState({ musicas: response.data.result.tracks })
             console.log(response.data.result.tracks)
-        } catch (error) {
+        }).catch((error) => {
             console.log(error.response)
-            alert ('Erro: não foi possível abrir detalhes')
-        }
-        
+            alert('Erro: não foi possível abrir detalhes')
+        })
     }
+ 
 
-    render () {
+
+    render() {
+       
+
+        const listaId = this.state.musicas.map((mus) => {
+            return <div key={mus.music}>
+             <li>{mus.name} - {mus.artist} - {mus.url} </li>
+             {/* <button onClick={() => ()}></button> */} //apagar??//
+            </div>
+        })
 
 
-        return(
+
+        return (
             <div>
                 <h3>Detalhes Playlist</h3>
-                <button onClick={this.props.pag1}>Voltar</button>
+                {listaId}
             </div>
         )
     }
