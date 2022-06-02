@@ -41,8 +41,8 @@ class App extends React.Component {
         />
       case 3:
         return <DetailPL 
-        playlists={this.state.playlists}
-        listaDeId = {this.listaDeId}
+        // playlists={this.state.playlists}
+        id = {this.listaDeId}
         />
       default:
         return <AddPL />
@@ -72,7 +72,7 @@ class App extends React.Component {
   //função pra passar id pra Detalhes//
 
   listaDeId = this.state.playlists.filter((pl)=>{
-    return <span>{pl.id}</span>
+    return pl.id
   })
 
   render() {

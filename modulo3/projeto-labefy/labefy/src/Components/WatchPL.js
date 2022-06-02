@@ -9,7 +9,7 @@ export default class WatchPL extends React.Component {
     }
 
     componentDidMount () {
-        // this.imprimePL()
+        // this.props.pegaPL
     }
     
     //altera valor do cont//
@@ -32,12 +32,11 @@ export default class WatchPL extends React.Component {
             .then((response) => {
                 console.log(response.data)
                 alert('Playlist excluída!')
-                // this.imprimePL()     
+                this.props.pegaPL()
             })
 
             .catch((error) => {
                 console.log(error.response)
-                // alert('Erro: não foi possível deletar')
             })
     }
 
@@ -46,7 +45,7 @@ export default class WatchPL extends React.Component {
 
         const listaPL = this.props.playlists.map((pl) => {
 
-            return <div key={pl.playlists}>
+            return <div key={pl.play}>
                 <li>{pl.name} <button onClick={() => this.trocaValor()}>+</button> </li>
                 {this.state.cont === false ? "" : <AddTrack id={pl.id} />}
                 <button onClick={() => this.deletaPL(pl.id)}>x</button>
@@ -61,6 +60,7 @@ export default class WatchPL extends React.Component {
                 <h3>Ver Playlists</h3>
 
                 {listaPL}
+                {this.props.pegaPL}
                 
 
             </div >

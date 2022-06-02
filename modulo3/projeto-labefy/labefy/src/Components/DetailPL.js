@@ -9,17 +9,17 @@ export default class DetailPL extends React.Component {
         cont: false
     }
 
-      //altera valor do cont//
+      //altera valor do cont//meio inutil, acho
 
-      trocaValor = () => {
-        this.setState({ cont: !this.state.cont })
-    }
+    //   trocaValor = () => {
+    //     this.setState({ cont: !this.state.cont })
+    // }
 
     //chama as músicas que tem em cada playlist//
 
     detalhesPL = () => {
 
-        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.listaDeId}/tracks`
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.id}/tracks`
 
         axios.get(url, {
             headers: {
@@ -39,19 +39,16 @@ export default class DetailPL extends React.Component {
     render() {
        
 
-        const listaId = this.state.musicas.map((mus) => {
+        const listaMusicas = this.state.musicas.map((mus) => {
             return <div key={mus.music}>
              <li>{mus.name} - {mus.artist} - {mus.url} </li>
-             {/* <button onClick={() => ()}></button> */} //apagar??//
             </div>
         })
-
-
 
         return (
             <div>
                 <h3>Detalhes Playlist</h3>
-                {listaId}
+                {listaMusicas}
             </div>
         )
     }
