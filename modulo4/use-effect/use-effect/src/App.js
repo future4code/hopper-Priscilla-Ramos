@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import PokeCard from "./components/PokeCard";
+import PokeCard from "./components/PokeCard.js";
 
-const App = () => {
+function App () {
   // state = {
   //   // lista de pokemons que está sendo guardada no estado
   //   pokeList: [],
