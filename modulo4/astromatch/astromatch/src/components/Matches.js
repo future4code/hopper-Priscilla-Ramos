@@ -1,16 +1,23 @@
 import axios from "axios";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 
 export default function Matches() {
 
+    //renderiza na tela na primeira renderização
+
+    useEffect(() => { getMatches() }, []);
+
+    
+    //tela matches e 
+    
     const [matches, setMatches] = useState([])
 
-    //tela matches e botões
+    //puxa os matches dados da API
 
     const getMatches = () => {
 
-        axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/priscilla/matches")
+        axios.get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/priscilla/matches')
 
             .then((response) => {
                 setMatches(response.data.matches)
@@ -25,8 +32,8 @@ export default function Matches() {
     const ListaMatch = matches.map((match) => {
         return <div>
             <img src={match.photo} alt="foto usuário" />
-            <h1>{match.name}</h1>,
-            <p>{match.bio}</p>
+            <h2>{match.name}</h2>,
+            
         </div>
     })
 
@@ -36,6 +43,7 @@ export default function Matches() {
         <div>
             <h1>Matches</h1>
             {ListaMatch}
+            {/* <button onClick={props.paginaDois}>Voltar</button> */}
         </div>
     )
 }

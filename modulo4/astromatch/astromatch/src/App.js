@@ -9,12 +9,13 @@ const ContainerGeral = styled.div`
   flex-direction: column;
   align-items: center;
   border: 4px solid #696969;
-  width: 40vw;
-  height: 125vh;
+  width: 550px;
+  height: 650px;
   background-color: #DCDCDC;
 `
 const ImagemLogo = styled.img`
-  width: 15vw;
+  margin-top: 2vh;
+  width: 13vw;
   `
 const ImagemCoracao = styled.div`
   display: flex;
@@ -24,8 +25,8 @@ const ImagemCoracao = styled.div`
 `
 const PhotoProfile = styled.img`
   margin-top: 6vh;
-  width: 35vw;
-  height: 65vh;
+  max-width: 50%;
+  max-height: 50%;
 `
 const ListaProfile = styled.div`
 display: flex;
@@ -52,7 +53,7 @@ function App() {
     axios.get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/priscilla/person')
 
       .then((response) => {
-        setInfos([response.data.profile])
+        setInfos([response.data.profile]);
       })
       .catch((error) => {
         console.log(error.response.data)
@@ -65,50 +66,72 @@ function App() {
     return <ListaProfile>
 
       <PhotoProfile src={profile.photo} alt="foto usuário" />
-      <h1>{profile.name}, {profile.age}</h1>
-      <h3>{profile.bio}</h3>
-<ImagemCoracao>
+      <h2>{profile.name}, {profile.age}</h2>
+      <h4>{profile.bio}</h4>
+      <ImagemCoracao>
         <button onClick={() => addMatches()}><img src={'https://www.shareicon.net/data/512x512/2016/01/10/700859_heart_512x512.png'} /></button>
         <button onClick={() => getProfile()}><img src={'https://cdn-icons-png.flaticon.com/512/39/39846.png'} /></button>
-        </ImagemCoracao>
+      </ImagemCoracao>
     </ListaProfile>
   })
 
 
   // CHOOSE PERSON
 
-  const [choose, setChoose] = useState(false)
+  const [choice, setChoice] = useState(false)
+  const [id, setId] = useState("")
 
   //post para quando curte e add a lista de matches
 
   const addMatches = () => {
 
     const body = {
-      id: "",
-      choice: true
+      id: id,
+      choice: choice
     }
 
-    axios.post("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/priscilla/choose-person", body)
-      .then(() => {
-        alert('deu certo!')
-        getProfile()
+    axios.post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/priscilla/choose-person/', body)
+      .then((response) => {
+        alert('deu certo!');
+        getProfile();
+        setChoice(true);
+        if (choice === true){
+          return setId([response.data.matches])}
+        
       })
       .catch((error) => {
-        alert('deu errado')
+        // alert('deu errado')
         console.log(error.response.data)
       })
-  }
+    }
+
+  //o set choice vai depender do que a pessoa escolher e ele vai ser relacionado ao id // choice começa False
+  
+  
+
+
 
 
   // alternar entre telas  ??????????????????????????
 
-  // const [tela, setTela] = useState("app")
+  // const [tela, setTela] = useState(1)
+
+  // const onClickChamaMatches = () => {
+  //   setTela("matches")
+  // }
+
+
+  // const onClickTrocarDeTela = () => {
+  //   setTela({ tela: tela === "app" ? "matches" : "app" });
+  // }
 
   // const mudaTela = () => {
-  //   switch (tela){
-  //   case 1:
-  //     return <App />
+  //   switch (tela) {
+  //     case 1:
+  //       return <App />
   //     case 2: return <Matches />
+  //     default:
+  //       return <App />
   //   }
   // }
 
@@ -117,22 +140,25 @@ function App() {
   // }
 
   // const irParaProximaTela = () => {
-  //   setTela(+ 1)
+  //   setTela(tela + 1)
   // }
 
   // const voltarTela = () => {
-  //   setTela(- 1)
+  //   setTela(tela - 1)
   // }
+
 
   return (
     <ContainerGeral>
 
       <ImagemLogo src={logo} />
 
-      {listaInfos}
+      {/* <button onClick={irParaProximaTela}>Lista Matches</button>
+      <button onClick={voltarTela}>Voltar</button>
+      {mudaTela} */}
 
-      {/* {mudaTela} */}
-      {/* <button onClick={irParaProximaTela()}>Lista Matches</button> */}
+
+      {listaInfos}
 
 
 
