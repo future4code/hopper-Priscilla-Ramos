@@ -43,7 +43,7 @@ export default function Matches() {
         <div>
             <h1>Matches</h1>
             {ListaMatch}
-            {/* <button onClick={props.paginaDois}>Voltar</button> */}
+            {/* <button onClick={props.voltarTela}>Voltar</button> */}
         </div>
     )
 }

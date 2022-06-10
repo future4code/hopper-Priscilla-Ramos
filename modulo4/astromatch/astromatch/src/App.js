@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Matches from "./components/Matches";
 import styled from "styled-components";
 import logo from "./img/logo.png"
+import { findAllByDisplayValue } from "@testing-library/react";
 
 const ContainerGeral = styled.div`
   display: flex;
@@ -41,6 +42,8 @@ height: 110vh;
 function App() {
 
   const [infos, setInfos] = useState([])
+  const [choice, setChoice] = useState(false)
+  const [id, setId] = useState("")
 
   //chama atualização da tela a cada atualização de perfil//
 
@@ -54,63 +57,51 @@ function App() {
 
       .then((response) => {
         setInfos([response.data.profile]);
+        setId(response.data.profile.id)
       })
       .catch((error) => {
         console.log(error.response.data)
       });
   }
 
-  // map pra renderizar os profiles na tela
 
-  const listaInfos = infos.map((profile) => {
-    return <ListaProfile>
+ // CHOOSE PERSON
 
-      <PhotoProfile src={profile.photo} alt="foto usuário" />
-      <h2>{profile.name}, {profile.age}</h2>
-      <h4>{profile.bio}</h4>
-      <ImagemCoracao>
-        <button onClick={() => addMatches()}><img src={'https://www.shareicon.net/data/512x512/2016/01/10/700859_heart_512x512.png'} /></button>
-        <button onClick={() => getProfile()}><img src={'https://cdn-icons-png.flaticon.com/512/39/39846.png'} /></button>
-      </ImagemCoracao>
-    </ListaProfile>
-  })
+   //post para quando curte e add a lista de matches
 
-
-  // CHOOSE PERSON
-
-  const [choice, setChoice] = useState(false)
-  const [id, setId] = useState("")
-
-  //post para quando curte e add a lista de matches
-
-  const addMatches = () => {
+  const addMatches = (choice) => {
 
     const body = {
       id: id,
       choice: choice
     }
 
-    axios.post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/priscilla/choose-person/', body)
-      .then((response) => {
-        alert('deu certo!');
+    axios.post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/priscilla/choose-person', body)
+      .then(() => {
+        // alert('deu certo!');
         getProfile();
-        setChoice(true);
-        if (choice === true){
-          return setId([response.data.matches])}
-        
+
       })
       .catch((error) => {
-        // alert('deu errado')
-        console.log(error.response.data)
+       console.log(error.response.data)
       })
-    }
+  }
 
-  //o set choice vai depender do que a pessoa escolher e ele vai ser relacionado ao id // choice começa False
-  
-  
+   
+  // map pra renderizar os profiles na tela
 
+  const listaInfos = infos.map((profile) => {
+    return <ListaProfile key={profile.bio}>
 
-
+      <PhotoProfile src={profile.photo} alt="foto usuário" />
+      <h2>{profile.name}, {profile.age}</h2>
+      <h4>{profile.bio}</h4>
+      <ImagemCoracao>
+        <button onClick={() => addMatches(true)}><img src={'https://www.shareicon.net/data/512x512/2016/01/10/700859_heart_512x512.png'} /></button>
+        <button onClick={() => addMatches(false)}><img src={'https://cdn-icons-png.flaticon.com/512/39/39846.png'} /></button>
+      </ImagemCoracao>
+    </ListaProfile>
+  })
 
   // alternar entre telas  ??????????????????????????
 
@@ -121,24 +112,19 @@ function App() {
   // }
 
 
-  // const onClickTrocarDeTela = () => {
-  //   setTela({ tela: tela === "app" ? "matches" : "app" });
-  // }
-
   // const mudaTela = () => {
   //   switch (tela) {
   //     case 1:
   //       return <App />
-  //     case 2: return <Matches />
+  //     case 2: return <Matches 
+  //     voltarTela={voltarTela}
+  //     mudaTela={mudaTela()}/>
   //     default:
   //       return <App />
   //   }
   // }
 
-  // onClickTrocarDeTela = () => {
-  //   setTela({tela === "app" ? "lista matches" : "app" })
-  // }
-
+  
   // const irParaProximaTela = () => {
   //   setTela(tela + 1)
   // }
@@ -153,9 +139,9 @@ function App() {
 
       <ImagemLogo src={logo} />
 
-      {/* <button onClick={irParaProximaTela}>Lista Matches</button>
-      <button onClick={voltarTela}>Voltar</button>
-      {mudaTela} */}
+      {/* <button onClick={irParaProximaTela}>Lista Matches</button> */}
+    
+      {/* {mudaTela} */}
 
 
       {listaInfos}
