@@ -9,7 +9,7 @@ const ContainerGeral = styled.div`
   align-items: center;
   border: 4px solid #696969;
   width: 550px;
-  height: 100%;
+  height: 670px;
   background-color: #DCDCDC;
 `
 const ImagemLogo = styled.img`
@@ -18,9 +18,16 @@ const ImagemLogo = styled.img`
   `
 const ImagemCoracao = styled.div`
   display: flex;
+  margin-top: 0px;
+  height: 90px;
+    width: 280px;
   button{
-    margin: 35px;}
-  img{width: 4vw;}
+    margin: 35px;
+    width: 55px;
+    height: 45px;
+    
+  }
+  img{width: 3vw;}
 `
 const PhotoProfile = styled.img`
   margin-top: 6vh;

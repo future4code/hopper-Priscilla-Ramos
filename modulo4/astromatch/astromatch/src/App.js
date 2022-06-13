@@ -4,7 +4,9 @@ import Matches from "./components/Matches";
 import styled from "styled-components";
 import Delete from "./components/Delete";
 
-
+const Botao = styled.button`
+  display: flex;
+`
 
 function App() {
 
@@ -33,15 +35,16 @@ function App() {
     <div>
 
       
-
       {escolheTela () }
+
+      <Botao>
       <button onClick={()=>mudaTela("Match")}>Lista Matches</button>
       <button onClick={()=>mudaTela("Home")}>Voltar</button>
       
-
       <Delete />
+      </Botao>
 
-    </div>
+    </div >
   );
 
 }
