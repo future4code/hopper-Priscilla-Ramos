@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import logo from "./img/logo.png"
 
@@ -13,29 +13,38 @@ const ContainerGeral = styled.div`
   background-color: #DCDCDC;
 `
 
+const ContainerLista = styled.span`
+display: grid;
+align-items: center;
+grid-template-columns: 1fr 1fr;
+justify-items: end;
+padding-top: 10px;
+padding-bottom: 10px;
+`
+
 const MatchImages = styled.img`
     max-width: 100%;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 90px;
+    padding-right: 10px;
+
 `
 
 const ImagemLogo = styled.img`
   margin-top: 2vh;
   width: 13vw;
-  `
+    `
 
 
 export default function Matches() {
+
+    const [matches, setMatches] = useState([])
 
     //renderiza na tela na primeira renderização
 
     useEffect(() => { getMatches() }, []);
 
-    
-    //tela matches e 
-    
-    const [matches, setMatches] = useState([])
 
     //puxa os matches dados da API
 
@@ -55,20 +64,17 @@ export default function Matches() {
     //map para renderizar os matches
 
     const ListaMatch = matches.map((match) => {
-        return <div>
+        return <ContainerLista>
             <MatchImages src={match.photo} alt="foto usuário" />
-            <h2>{match.name}</h2>,
-            
-        </div>
+            <h4>{match.name}</h4>
+        </ContainerLista>
     })
 
     return (
         <ContainerGeral>
-            <h1>Matches</h1>
-
             <ImagemLogo src={logo} />
             {ListaMatch}
-          
+
         </ContainerGeral>
     )
 }

@@ -18,8 +18,8 @@ function App() {
         return <Home />
       case "Match": 
         return <Matches />
-      // default:
-      //   return <Home />
+      default:
+        return <Home />
     }
   }
 
@@ -32,7 +32,7 @@ function App() {
   return (
     <div>
 
-      <Home />
+      
 
       {escolheTela () }
       <button onClick={()=>mudaTela("Match")}>Lista Matches</button>

@@ -25,8 +25,9 @@ const ImagemCoracao = styled.div`
 const PhotoProfile = styled.img`
   margin-top: 6vh;
   max-width: 100%;
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
+  object-fit: contain;
 `
 const ListaProfile = styled.div`
 display: flex;
@@ -51,9 +52,10 @@ export default function Home() {
     //chama o profile que ainda não foi visto//
 
     const getProfile = async () => {
+        const name = 'priscilla'
 
         try {
-            const response = await axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/:priscilla/person")
+            const response = await axios.get(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/${name}/person`)
             setInfos([response.data.profile]);
             setId(response.data.profile.id)
             console.log(response.data.profile)
@@ -93,13 +95,13 @@ export default function Home() {
 
             <PhotoProfile src={profile.photo} alt="foto usuário" />
             <h2>{profile.name}, {profile.age}</h2>
-            <h4>{profile.bio}</h4>
+            <p>{profile.bio}</p>
             <ImagemCoracao>
                 <button onClick={() => addMatches(true)}>
-                    <img src={'https://www.shareicon.net/data/512x512/2016/01/10/700859_heart_512x512.png'} />
+                    <img src={'https://w7.pngwing.com/pngs/1012/524/png-transparent-line-angle-leaf-philosophy-heart-and-arrow-love-angle-leaf.png'} />
                 </button>
                 <button onClick={() => addMatches(false)}>
-                    <img src={'https://cdn-icons-png.flaticon.com/512/39/39846.png'} />
+                    <img src={'https://i.pinimg.com/originals/d3/82/6a/d3826a943b0d3a9d54ec3d3cba01d0ef.png'} />
                 </button>
             </ImagemCoracao>
         </ListaProfile>
