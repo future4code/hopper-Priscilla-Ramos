@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import api from "../components/ConfigApi";
 import axios from "axios";
-// import styled from "styled-components"
+import styled from "styled-components"
+import ApplicationFormPage from "./ApplicationFormPage";
 
-// const CardViagens = styled.div`
-//     display: flex;
-//     justify-content: center;
-//     border: 2px solid grey;
-// `    TA QUEBRANDO O CÓDIGO!!!
+// const CardViagens = styled.span`
+    /* display: flex; */
+    /* justify-content: center; */
+    /* border: 2px solid grey; */
+//  `    
+/* TA QUEBRANDO O CÓDIGO!!! */ 
 
 export default function ListTripsPage() {
 
     const [trip, setTrip] = useState([])
+    const [id, setId] = useState("")
+    const [cont, setCont] = useState(false)
 
-    useEffect(() => { getTrip() }, [])
+    useEffect(() => {getTrip()}, [])
 
     const getTrip = async () => {
         try {
@@ -24,16 +28,25 @@ export default function ListTripsPage() {
         }
     }
 
+    const trocaValor = () => {
+        setCont(!cont)
+    }
+
 
     const listaViagens = trip.map((viagem) => {
         return <div key={viagem.id}>
-            <p>{viagem.name}</p>
-            <p>{viagem.description}</p>
-            <p>{viagem.planet}</p>
-            <p>{viagem.date}</p>
-            <p>{viagem.duration}</p>
+            <h3>Viagem: {viagem.name}</h3>
+            <p><strong>Descrição:</strong> {viagem.description}</p>
+            <p><strong>Planeta:</strong> {viagem.planet}</p>
+            <p><strong>Data:</strong> {viagem.date}</p>
+            <p><strong>Duração:</strong> {viagem.duration}</p>
+            <button onClick={() =>trocaValor()}>+</button>
+            {cont === false ? "" : <ApplicationFormPage id={viagem.id}/>}
         </div>
     })
+
+    
+    
 
     return (
         <div>
