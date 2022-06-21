@@ -5,22 +5,19 @@ import styled from "styled-components"
 
 
 
-function ApplicationFormPage (props) {
+function ApplicationFormPage(props) {
 
     //o "estado"
 
     const [name, setName] = useState("");
-    const [age, setAge] = useState();
+    const [age, setAge] = useState("");
     const [text, setText] = useState("");
     const [profession, setProfession] = useState("")
     const [country, setCountry] = useState("")
 
+     //POST PARA ENVIAR DADOS DO VIAJANTE -- endpoint do apply to trip
 
-    useEffect(() => { apllyToTrip() }, [])
-
-    //POST PARA ENVIAR DADOS DO VIAJANTE
-
-    const apllyToTrip = async () => {
+    const apllyToTrip = (id) => {
 
         const body = {
             "name": name,
@@ -30,23 +27,30 @@ function ApplicationFormPage (props) {
             "country": country
         }
 
-        try {
-            await api.post("/trips/:id/apply", body)
-            confereAge()
-            console.log("deu certo!!")
-            setName("")
-            setAge("")
-            setText("")
-            setProfession("")
-            setCountry("")         
-        } catch (error) {
-            console.log(error.response)
-        }
+        api.post(`/trips/${id}/apply`, body)
+            .then(() => {
+                confereAge()
+                console.log("deu certo!!")
+                limpaInput()
+            })
+            .catch((error) => {
+                console.log(error.response.data)
+                limpaInput()
+            })
+    }
+
+    //função para limpar os inputs após envio do formulário
+
+    const limpaInput = () => {
+        return setName(""),
+            setAge(""),
+            setText(""),
+            setProfession(""),
+            setCountry("")
     }
 
 
-    //onChange
-
+    //onChange para os Inputs controlados
 
     const onChangeName = (event) => {
         setName(event.target.value)
@@ -73,31 +77,29 @@ function ApplicationFormPage (props) {
 
     const confereAge = () => {
         if (age < 18) {
-            alert("você não pode se inscrever, é menor de idade")
+            alert("voce nao pode se inscrever, e menor de idade")
         }
     }
 
-
-
     return (
         <div>
-
-            <input value={name}
-                onChange={onChangeName}
-                placeholder="Digite seu nome completo"></input>
-            <input value={age}
-                onChange={onChangeAge}
-                placeholder="Digite sua idade"></input>
-            <input value={text}
-                onChange={onChangeApplyText}
-                placeholder="Digite o porquê quer viajar"></input>
-            <input value={profession}
-                onChange={onChangeProfession}
-                placeholder="Digite seua profissão"></input>
-            <input value={country}
-                onChange={onChangeCountry}
-                placeholder="Digite seu país"></input>
-
+            <form>
+                <input value={name}
+                    onChange={onChangeName}
+                    placeholder="Digite seu nome completo"></input>
+                <input value={age}
+                    onChange={onChangeAge}
+                    placeholder="Digite sua idade"></input>
+                <input value={text}
+                    onChange={onChangeApplyText}
+                    placeholder="Digite o porquê quer viajar"></input>
+                <input value={profession}
+                    onChange={onChangeProfession}
+                    placeholder="Digite seua profissão"></input>
+                <input value={country}
+                    onChange={onChangeCountry}
+                    placeholder="Digite seu país"></input>
+            </form>
             <button onClick={() => apllyToTrip(props.id)}>Apply</button>
 
         </div>
