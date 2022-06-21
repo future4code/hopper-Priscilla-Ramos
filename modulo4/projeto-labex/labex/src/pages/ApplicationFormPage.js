@@ -83,6 +83,8 @@ function ApplicationFormPage(props) {
 
     return (
         <div>
+           <h1>Formulário de Inscrição</h1> 
+           
             <form>
                 <input value={name}
                     onChange={onChangeName}
