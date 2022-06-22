@@ -15,7 +15,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path={"/"} element={<HomePage />} />
+          <Route index element={<HomePage />} />
           <Route path={"/admin/trips/list"} element={<AdminHomePage />} />
           <Route path={"/trips/list"} element={<ListTripsPage />} />
           <Route path={"/admin/trips/create"} element={<CreateTripPage />} />

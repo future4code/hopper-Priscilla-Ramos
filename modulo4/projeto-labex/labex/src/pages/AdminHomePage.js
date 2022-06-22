@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import api from "../components/ConfigApi";
-import axios from "axios";
-import styled from "styled-components"
+import styled from "styled-components";
 
 
 export default function AdminHomePage(props) {
+  
+    // useEffect(() => { deleteTrip () }, [])
 
     //Deleta viagens
 
@@ -18,24 +19,14 @@ export default function AdminHomePage(props) {
         }
     }
 
-    //Get Trip
+    const trip = props.lista
 
-    const listaComDelete = props.trip.map((viagem) => {
-        return <div key={viagem.id}>
-            <h3>Viagem: {viagem.name}</h3>
-            <p><strong>Descrição:</strong> {viagem.description}</p>
-            <p><strong>Planeta:</strong> {viagem.planet}</p>
-            <p><strong>Data:</strong> {viagem.date}</p>
-            <p><strong>Duração:</strong> {viagem.durationInDays}</p>
-            <button onClick={() => deleteTrip()}>-</button>
-        </div>
-    })
-
-
+    console.log(trip)
+    
     return (
         <div>
             <h2>Admin Page</h2>
-            {listaComDelete}
+            
         </div>
     )
 }

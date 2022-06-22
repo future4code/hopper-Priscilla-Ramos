@@ -4,6 +4,7 @@ import styled from "styled-components"
 import ApplicationFormPage from "./ApplicationFormPage";
 import { useNavigate } from "react-router-dom";
 import AdminHomePage from "./AdminHomePage";
+import TripDetailsPage from "./TripDetailsPage";
 
 // const CardViagens = styled.span`
 /* display: flex; */
@@ -34,44 +35,52 @@ export default function ListTripsPage() {
         }
     }
 
-    
+
     //map para renderizar na tela cada uma das informaçoes da viagem
 
     const listaViagens = trip.map((viagem) => {
-        
+
         return <div key={viagem.id}>
             <h3>Viagem: {viagem.name}</h3>
             <p><strong>Descrição:</strong> {viagem.description}</p>
             <p><strong>Planeta:</strong> {viagem.planet}</p>
             <p><strong>Data:</strong> {viagem.date}</p>
             <p><strong>Duração:</strong> {viagem.durationInDays}</p>
-            <button onClick={()=> navigate ("/trips/application")}>Aplicar</button>
+            <button onClick={() => navigate("/trips/application")}>Aplicar</button>
         </div>
     })
 
     //passa ID para o formulário de aplicação
 
-    const passaInfos = () => {
+    const passaInfosAppForm = () => {
         return <ApplicationFormPage
-        id = {id} />,
-        <AdminHomePage 
-        id = {id}
-        trip = {trip} />
+            id={id} />
+    }        
+
+    const passaInfosAdminPage = () =>{
+            <AdminHomePage
+                id={id}
+                lista={listaViagens}
+            />
     }
+
+    const passaInfosTripDetail = () => {
+            <TripDetailsPage
+                id={id} />
+    }
+
+    console.log(listaViagens)
 
     // //passa getTrip para admin home page   !!!VER SE AINDA PRECISA!!!
 
-    // const passaGetTrip = () => {
-    //     return <AdminHomePage 
-    //     getTrip = {getTrip()}/>
-    // }
 
     return (
         <div>
             <h1>Lista Viagens</h1>
             {listaViagens}
-            {passaInfos()}
-            {/* {passaGetTrip()} */}
+            {passaInfosAppForm()}
+            {passaInfosAdminPage()}
+            {passaInfosTripDetail()}
         </div>
     )
 }
