@@ -22,7 +22,7 @@ export default function LoginPage() {
             const response = await api.post(`/login`, body)
             console.log(response.data)
             localStorage.setItem("token", response.data.token)
-            navigate ("/admin/trips/:id")
+            navigate ("/admin/trips/list")
         } catch (error) {
             console.log(error.response)
         }

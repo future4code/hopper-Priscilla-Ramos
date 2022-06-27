@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import api from "../components/ConfigApi";
-import axios from "axios";
 import styled from "styled-components"
-
-
+import {useNavigate} from "react-router-dom";
 
 function ApplicationFormPage(props) {
+
+    const navigate = useNavigate()
 
     //o "estado"
 
@@ -101,8 +101,12 @@ function ApplicationFormPage(props) {
                 <input value={country}
                     onChange={onChangeCountry}
                     placeholder="Digite seu país"></input>
+                
+                <button onClick={() => apllyToTrip(props.id)}>Apply</button>
             </form>
-            <button onClick={() => apllyToTrip(props.id)}>Apply</button>
+            
+
+            <button onClick={() => navigate("/trips/list")}>Voltar</button>
 
         </div>
     )

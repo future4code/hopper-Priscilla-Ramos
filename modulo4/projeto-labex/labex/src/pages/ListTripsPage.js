@@ -4,7 +4,7 @@ import styled from "styled-components"
 import ApplicationFormPage from "./ApplicationFormPage";
 import { useNavigate } from "react-router-dom";
 import AdminHomePage from "./AdminHomePage";
-import TripDetailsPage from "./TripDetailsPage";
+
 
 // const CardViagens = styled.span`
 /* display: flex; */
@@ -29,7 +29,7 @@ export default function ListTripsPage() {
             const response = await api.get("/trips")
             setTrip(response.data.trips)
             setId(response.data.trips.id)
-
+            console.log(response.data.trips.id)
         } catch (error) {
             console.log(error)
         }
@@ -64,23 +64,13 @@ export default function ListTripsPage() {
             />
     }
 
-    const passaInfosTripDetail = () => {
-            <TripDetailsPage
-                id={id} />
-    }
-
-    console.log(listaViagens)
-
-    // //passa getTrip para admin home page   !!!VER SE AINDA PRECISA!!!
-
-
     return (
         <div>
             <h1>Lista Viagens</h1>
             {listaViagens}
             {passaInfosAppForm()}
             {passaInfosAdminPage()}
-            {passaInfosTripDetail()}
+            <button onClick={() => navigate("/")}>Voltar</button>
         </div>
     )
 }

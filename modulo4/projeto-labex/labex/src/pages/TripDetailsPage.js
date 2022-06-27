@@ -1,53 +1,60 @@
 import React, { useEffect, useState } from "react";
 import api from "../components/ConfigApi";
 import styled from "styled-components"
-import {useProtectedPage} from "../components/useProtectedPage"
- 
+import { useProtectedPage } from "../components/useProtectedPage"
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 export default function TripDetailsPage(props) {
 
-    // useProtectedPage();
+    const navigate = useNavigate();
 
-    const [detail, setDetail] = useState([])
+    useProtectedPage();
 
-    
+    const [detail, setDetail] = useState({})
+    const [candidatos, setCandidatos] = useState({})
+    const { id } = useParams()
+
     //para renderizar assim que entrar na página
 
-    useEffect = (() => { getTripDetail() }, [])
+    useEffect(() => {
+        getTripDetail()
+    }, [])
 
-    
+    console.log(id)
+
     //para pegar os detalhes da viagem - endpoint do get trip detail
 
     const getTripDetail = () => {
-
-       const response = api.get(`/trip/${props.id}`, {
+        api.get(`/trip/${id}`, {
             headers: {
                 auth: localStorage.getItem("token")
             }
         })
-        .then ((response)=>{
-        setDetail([response.data.trip])
-        console.log(response.data.trip)
-    }).catch ((error)=>{
-        console.log(error.response)
-    })
-}
+            .then((response) => {
+                setDetail(response.data.trip)
+                setCandidatos(response.data)
+                console.log(response.data)
+            })
+            .catch((error) => {
+                console.log(error.response)
+            })
 
-//map para renderizar
-
-// const listaDetail = detail.map((viagem) => {
-//     return <div key={viagem.id}>
-//         <h3>Viagem: {viagem.name}</h3>
-//         <p><strong>Descrição:</strong> {viagem.description}</p>
-//         <p><strong>Planeta:</strong> {viagem.planet}</p>
-//         <p><strong>Data:</strong> {viagem.date}</p>
-//         <p><strong>Duração:</strong> {viagem.durationInDays}</p>
-//     </div>
-// })
-
-return (
-    <div>
-        <h2>Trip Detail Page</h2>
-        {/* {listaDetail} */}
-    </div>
-)
     }
+
+    
+    return (
+        <div>
+            <h2>Trip Detail Page</h2>
+
+            <h3>Viagem: {detail.name}</h3>
+            <p><strong>Descrição:</strong>{detail.description}</p>
+            <p><strong>Planeta:</strong>{detail.planet}</p>
+            <p><strong>Data:</strong>{detail.date}</p>
+            <p><strong>Duração:</strong>{detail.durationInDays}</p>
+
+            <button onClick={() => navigate("/admin/trips/list")}>Voltar</button>
+            
+        </div>
+    )
+}
