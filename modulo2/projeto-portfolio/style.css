@@ -1,0 +1,241 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Ubuntu', sans-serif; 
+    background-color: #fdf5e6; 
+}
+
+/* ----gerais---- */
+
+
+#pai{
+    display:flex;
+    flex-direction: column;
+}
+
+
+header{
+    height: 240px;
+}
+
+
+#cabecalho {
+    display: flex;
+    flex-direction: row;
+    height: 240px;
+    width: 100vw;
+    background-color: #ffc5bf;
+    font-size: 70px;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Lobster', cursive;
+
+}
+
+button {
+    font-size: 20px;
+    background-color: #fdf5e6;
+    color: #ffaea5;
+    cursor: pointer;
+    width: 250px;
+	height:50px;
+	border-radius: 30px;
+    border-color: #FFA07A;
+}
+
+#menu{
+    display: flex;
+    height: 50px;
+    background-color: #ffc5bf;
+    border-color: #ddc8ae;
+    justify-content: space-around;
+}
+
+#fotoPri{
+    width: 200px;
+    height: 200px;
+    border-radius: 150px;
+}
+
+
+#cores{
+    height: 300px;
+}
+
+#rodape2{
+    margin-top: 100px;
+    height: 100px;
+    display: flex;
+    background-color: #FFA07A;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+}
+
+#rodape{
+    height: 100px;
+    display: flex;
+    background-color: #FFA07A;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.fundo-laranja{
+    background-color: #FFA07A;
+}
+
+.imagem-rodape1{
+    width: 15px;
+    height: 15px;
+    justify-content: center;
+    background-color: #FFA07A
+}
+
+.rosa1{
+    background-color: #ffc5bf;
+    height: 20px;
+}
+
+.rosa2{
+    background-color: #ffaea5;
+    height: 20px;
+}
+
+.verde{
+    background-color: #008B8B;
+    height: 20px;
+}
+
+.menta{
+    background-color: #b6cfb6;
+    height: 20px;
+}
+
+.cor-laranja{
+    font-weight: bolder;
+    background-color: #FFA07A;
+}
+
+/* ---home--- */
+
+#aboutme{
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    text-align: center;
+}
+
+#formacao{
+    display: grid;
+    flex-direction: row;
+    height: 250px;
+}
+
+#curriculo{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 730px;
+}
+
+#lista-habilidades{
+    padding: 0;
+    margin: 0;
+    list-style-type: decimal;
+}
+
+
+
+.unordered-list{
+    list-style-type: circle;
+}
+
+/* ----contato--- */
+
+#contato{
+    padding-top: 20px;
+}
+
+.botao-submit{
+    font-size: 20px;
+    background-color: #fdf5e6;
+    color: #ffaea5;
+    cursor: pointer;
+    width: 100px;
+	height:50px;
+	border-radius: 30px;
+    border-color: #FFA07A;
+}
+
+#caixa-mensagem{
+    height: 200px;
+    width: 400px;
+}
+
+.formata-input{
+    font-size: 20px;
+    background-color: #fdf5e6;
+    color: #ffaea5;
+    width: 250px;
+	height:50px;
+	border-radius: 30px;
+    border-color: #FFA07A;
+}
+
+#footer-contatos{
+    height: 50px;
+}
+
+
+
+/* ----projetos---- */
+
+.botoes-projeto{
+    padding-top: 20px;
+     display:flex;
+     justify-content: space-around;
+ }
+
+#sistema-loja{
+    padding-top: 20px;
+}
+
+.botao-link{
+    height: 100px;
+}
+
+#bot{
+    background-color: #ffc5bf;
+    height: 50px;
+}
+
+#listaJs{
+    padding-top: 20px;
+    width: 100vw;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#imagem-listaJS{
+    width: 800px;
+    height: 800px;
+}
+
+.tecnologia{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.imagens-tecnologia{
+    height: 120px;
+    width: 150px;
+}
+
+
+
+
