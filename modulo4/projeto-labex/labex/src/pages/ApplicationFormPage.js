@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import api from "../components/ConfigApi";
 import styled from "styled-components"
-import {useNavigate} from "react-router-dom";
+import Header from "../components/Header";
 
 function ApplicationFormPage(props) {
-
-    const navigate = useNavigate()
-
-    //o "estado"
 
     const [name, setName] = useState("");
     const [age, setAge] = useState("");
@@ -15,7 +11,6 @@ function ApplicationFormPage(props) {
     const [profession, setProfession] = useState("")
     const [country, setCountry] = useState("")
 
-     //POST PARA ENVIAR DADOS DO VIAJANTE -- endpoint do apply to trip
 
     const apllyToTrip = (id) => {
 
@@ -39,8 +34,7 @@ function ApplicationFormPage(props) {
             })
     }
 
-    //função para limpar os inputs após envio do formulário
-
+ 
     const limpaInput = () => {
         return setName(""),
             setAge(""),
@@ -48,32 +42,6 @@ function ApplicationFormPage(props) {
             setProfession(""),
             setCountry("")
     }
-
-
-    //onChange para os Inputs controlados
-
-    const onChangeName = (event) => {
-        setName(event.target.value)
-    }
-
-    const onChangeAge = (event) => {
-        setAge(event.target.value)
-    }
-
-    const onChangeApplyText = (event) => {
-        setText(event.target.value)
-    }
-
-    const onChangeProfession = (event) => {
-        setProfession(event.target.value)
-    }
-
-    const onChangeCountry = (event) => {
-        setCountry(event.target.value)
-    }
-
-
-    //FUNÇÃO PARA VERIFICAR SE TEM MAIS DE 18 ANOS
 
     const confereAge = () => {
         if (age < 18) {
@@ -83,31 +51,30 @@ function ApplicationFormPage(props) {
 
     return (
         <div>
-           <h1>Formulário de Inscrição</h1> 
+           <Header 
+           nome={"forms"}
+           />
            
             <form>
                 <input value={name}
-                    onChange={onChangeName}
+                    onChange={(e)=>setName(e.target.value)}
                     placeholder="Digite seu nome completo"></input>
                 <input value={age}
-                    onChange={onChangeAge}
+                    onChange={(e)=>setAge(e.target.value)}
                     placeholder="Digite sua idade"></input>
                 <input value={text}
-                    onChange={onChangeApplyText}
+                    onChange={(e)=>setText(e.target.value)}
                     placeholder="Digite o porquê quer viajar"></input>
                 <input value={profession}
-                    onChange={onChangeProfession}
+                    onChange={(e)=>setProfession(e.target.value)}
                     placeholder="Digite seua profissão"></input>
                 <input value={country}
-                    onChange={onChangeCountry}
+                    onChange={(e)=>setCountry(e.target.value)}
                     placeholder="Digite seu país"></input>
                 
                 <button onClick={() => apllyToTrip(props.id)}>Apply</button>
             </form>
-            
-
-            <button onClick={() => navigate("/trips/list")}>Voltar</button>
-
+                        
         </div>
     )
 }

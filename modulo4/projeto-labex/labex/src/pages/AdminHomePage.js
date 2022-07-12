@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import api from "../components/ConfigApi";
-import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useProtectedPage } from "../components/useProtectedPage";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header"
 
 export default function AdminHomePage() {
 
@@ -55,10 +55,12 @@ export default function AdminHomePage() {
 
     return (
         <div>
-            <h2>Admin Page</h2>
-            <button onClick={() => navigate("/admin/trips/create")}>Criar Viagem</button>
+
+            <Header 
+            nome={"admin home"}
+            />
+
             {listaViagens}
-            <button onClick={() => navigate("/login")}>Voltar</button>
         </div>
     )
 }

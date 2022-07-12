@@ -3,6 +3,7 @@ import api from "../components/ConfigApi";
 import styled from "styled-components"
 import { useProtectedPage } from "../components/useProtectedPage";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 
 export default function CreateTripPage() {
@@ -80,8 +81,10 @@ export default function CreateTripPage() {
 
     return (
         <div>
-            <h2>Create Trip Page</h2>
-            <button onClick={() => navigate("/admin/trips/list")}>Voltar</button>
+            <Header
+            nome={"create trip"}
+            />
+           
             <form>
                 <input
                     placeholder="Nome Viagem"

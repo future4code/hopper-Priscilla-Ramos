@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import api from "../components/ConfigApi";
-import styled from "styled-components"
+import React from "react";
 import ApplicationFormPage from "./ApplicationFormPage";
 import { useNavigate } from "react-router-dom";
 import AdminHomePage from "./AdminHomePage";
+import useRequestData from "../components/UseRequestData";
+import Header from "../components/Header";
+import { goToAplly } from "../Routes/RouteFunctions";
 
 
 // const CardViagens = styled.span`
@@ -17,28 +18,9 @@ export default function ListTripsPage() {
 
     const navigate = useNavigate()
 
-    const [trip, setTrip] = useState([])
-    const [id, setId] = useState("")
+    const [data, loading, error] = useRequestData(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/priscilla-lucena-hopper/trips`)
 
-    useEffect(() => { getTrip() }, [])
-
-    //PUXA AS VIAGENS CRIADAS --- endpoint do Get Trips
-
-    const getTrip = async () => {
-        try {
-            const response = await api.get("/trips")
-            setTrip(response.data.trips)
-            setId(response.data.trips.id)
-            console.log(response.data.trips.id)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-
-    //map para renderizar na tela cada uma das informaçoes da viagem
-
-    const listaViagens = trip.map((viagem) => {
+    const listaViagens = data && data.map((viagem) => {
 
         return <div key={viagem.id}>
             <h3>Viagem: {viagem.name}</h3>
@@ -46,31 +28,35 @@ export default function ListTripsPage() {
             <p><strong>Planeta:</strong> {viagem.planet}</p>
             <p><strong>Data:</strong> {viagem.date}</p>
             <p><strong>Duração:</strong> {viagem.durationInDays}</p>
-            <button onClick={() => navigate("/trips/application")}>Aplicar</button>
+            <button onClick={() => goToAplly(navigate)}>Aplicar</button>
         </div>
     })
 
-    //passa ID para o formulário de aplicação
+    const listaId = data && data.map(data => data.id);
 
     const passaInfosAppForm = () => {
         return <ApplicationFormPage
-            id={id} />
-    }        
+            id={listaId}
+        />
+    }
 
-    const passaInfosAdminPage = () =>{
-            <AdminHomePage
-                id={id}
-                lista={listaViagens}
-            />
+    const passaInfosAdminPage = () => {
+        <AdminHomePage
+            id={listaId}
+            lista={listaViagens}
+        />
     }
 
     return (
         <div>
-            <h1>Lista Viagens</h1>
+            <Header
+            nome={"list trips"}
+            />
+
             {listaViagens}
             {passaInfosAppForm()}
             {passaInfosAdminPage()}
-            <button onClick={() => navigate("/")}>Voltar</button>
+           
         </div>
     )
 }

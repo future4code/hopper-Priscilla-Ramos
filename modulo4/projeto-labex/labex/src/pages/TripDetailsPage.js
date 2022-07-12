@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import api from "../components/ConfigApi";
-import styled from "styled-components"
 import { useProtectedPage } from "../components/useProtectedPage"
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 export default function TripDetailsPage(props) {
-
-    const navigate = useNavigate();
 
     useProtectedPage();
 
@@ -45,7 +43,9 @@ export default function TripDetailsPage(props) {
     
     return (
         <div>
-            <h2>Trip Detail Page</h2>
+            <Header
+            nome={"trips detail"}
+            />
 
             <h3>Viagem: {detail.name}</h3>
             <p><strong>Descrição:</strong>{detail.description}</p>
@@ -53,7 +53,7 @@ export default function TripDetailsPage(props) {
             <p><strong>Data:</strong>{detail.date}</p>
             <p><strong>Duração:</strong>{detail.durationInDays}</p>
 
-            <button onClick={() => navigate("/admin/trips/list")}>Voltar</button>
+            
             
         </div>
     )

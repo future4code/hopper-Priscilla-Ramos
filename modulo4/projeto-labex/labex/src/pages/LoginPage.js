@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import api from "../components/ConfigApi";
-import styled from "styled-components"
 import { useNavigate } from "react-router-dom";
-
+import Header from "../components/Header";
 
 export default function LoginPage() {
+
+    const navigate = useNavigate ()
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -28,35 +29,23 @@ export default function LoginPage() {
         }
     };
 
-    //inputs controlados - onchange
-
-    const onChangeEmail = (event) => {
-        setEmail(event.target.value)
-    }
-
-    const onChangePassword = (event) => {
-        setPassword(event.target.value)
-    }
-
-    //função muda de pagina
-
-   const navigate = useNavigate ()
-
     return (
         <div>
-            <h2>Login Page</h2>
+            <Header
+            nome={"login"}
+            />
 
             <input
                 type="email"
                 value={email}
-                onChange={onChangeEmail}
+                onChange={(e)=>setEmail(e.target.value)}
                 placeholder="e-mail"
             />
 
             <input
                 type="password"
                 value={password}
-                onChange={onChangePassword}
+                onChange={(e)=>setPassword(e.target.value)}
                 placeholder="senha"
             />
 
