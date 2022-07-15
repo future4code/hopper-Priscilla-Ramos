@@ -3,7 +3,7 @@ import api from "../components/UrlBase";
 import { useProtectedPage } from "../Hooks/useProtectedPage"
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
-import {useRequestData} from "../Hooks/UseRequestData"
+import { useRequestData } from "../Hooks/UseRequestData"
 
 export default function TripDetailsPage(props) {
 
@@ -15,13 +15,6 @@ export default function TripDetailsPage(props) {
 
 
     useEffect(() => {
-        getTripDetail()
-    }, [])
-
-    console.log(id)
-
-
-    const getTripDetail = () => {
         api.get(`/trip/${id}`, {
             headers: {
                 auth: localStorage.getItem("token")
@@ -35,14 +28,14 @@ export default function TripDetailsPage(props) {
             .catch((error) => {
                 console.log(error.response)
             })
+    }, [])
 
-    }
+    console.log(id)
 
-    
     return (
         <div>
             <Header
-            nome={"trips detail"}
+                nome={"trips detail"}
             />
 
             <h3>Viagem: {detail.name}</h3>
@@ -51,8 +44,8 @@ export default function TripDetailsPage(props) {
             <p><strong>Data:</strong>{detail.date}</p>
             <p><strong>Duração:</strong>{detail.durationInDays}</p>
 
-            
-            
+
+
         </div>
     )
 }
