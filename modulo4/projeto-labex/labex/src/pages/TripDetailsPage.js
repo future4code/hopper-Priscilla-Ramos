@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import api from "../components/ConfigApi";
-import { useProtectedPage } from "../components/useProtectedPage"
+import api from "../components/UrlBase";
+import { useProtectedPage } from "../Hooks/useProtectedPage"
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import {useRequestData} from "../Hooks/UseRequestData"
 
 export default function TripDetailsPage(props) {
 
@@ -13,7 +13,6 @@ export default function TripDetailsPage(props) {
     const [candidatos, setCandidatos] = useState({})
     const { id } = useParams()
 
-    //para renderizar assim que entrar na página
 
     useEffect(() => {
         getTripDetail()
@@ -21,7 +20,6 @@ export default function TripDetailsPage(props) {
 
     console.log(id)
 
-    //para pegar os detalhes da viagem - endpoint do get trip detail
 
     const getTripDetail = () => {
         api.get(`/trip/${id}`, {

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import api from "../components/ConfigApi";
-import styled from "styled-components"
+import api from "../components/UrlBase";
 import Header from "../components/Header";
 
 function ApplicationFormPage(props) {

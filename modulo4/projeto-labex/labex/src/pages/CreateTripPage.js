@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import api from "../components/ConfigApi";
-import styled from "styled-components"
-import { useProtectedPage } from "../components/useProtectedPage";
+import api from "../components/UrlBase";
+import { useProtectedPage } from "../Hooks/useProtectedPage";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 

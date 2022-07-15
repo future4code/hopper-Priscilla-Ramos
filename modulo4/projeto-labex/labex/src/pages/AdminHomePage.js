@@ -1,53 +1,35 @@
 import React, { useEffect, useState } from "react";
-import api from "../components/ConfigApi";
+import { URL_BASE } from "../components/UrlBase";
 import { useParams } from "react-router-dom";
-import { useProtectedPage } from "../components/useProtectedPage";
+import { useProtectedPage } from "../Hooks/useProtectedPage";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header"
 
 export default function AdminHomePage() {
 
-    const [trip, setTrip] = useState([])
+    const [data, loading, error] = useRequestData(`${URL_BASE}/trips`)
     const navigate = useNavigate()
-    const {id} = useParams
-    
+    const { id } = useParams
+
     useProtectedPage();
 
-    useEffect(() => { getTrip() }, [])
-
-    //PUXA AS VIAGENS CRIADAS --- endpoint do Get Trips
-
-    const getTrip = async () => {
-        try {
-            const response = await api.get("/trips")
-            setTrip(response.data.trips)
-            console.log(response.data.trips.id)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    //map pra renderizar a lista
-
-    const listaViagens = trip.map((viagem) => {
-
+    const listaViagens = data && data.map((viagem) => {
         return <div key={viagem.id}>
             <h3 onClick={() => navigate(`/admin/trips/${viagem.id}`)}> Viagem: {viagem.name}</h3>
             <button onClick={() => deleteTrip(id)}>Delete</button>
         </div>
     })
 
-    //Deleta viagens - endpoint delete trip
 
     const deleteTrip = () => {
-            api.delete(`/trips/${id}`, {
-                headers: {
-                    auth: localStorage.getItem("token")
-                }
-            }).then((response)=>{
-                console.log("deu certo!")
-                getTrip()
-            }).catch ((error)=>{
+        api.delete(`/trips/${id}`, {
+            headers: {
+                auth: localStorage.getItem("token")
+            }
+        }).then((response) => {
+            console.log("deu certo!")
+            getTrip()
+        }).catch((error) => {
             console.log(error.data)
             alert("deu errado!")
         })
@@ -56,11 +38,14 @@ export default function AdminHomePage() {
     return (
         <div>
 
-            <Header 
-            nome={"admin home"}
+            <Header
+                nome={"admin home"}
             />
-
-            {listaViagens}
+            {loading && <p>Carregando...</p>}
+            {!loading && error && <p>Deu Ruim!</p>}
+            {!loading && data && data.length > 0 && listaViagens}
+            {!loading && data && data.length === 0 && <p>Não há viagens!</p>}
+            
         </div>
     )
 }

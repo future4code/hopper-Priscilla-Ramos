@@ -12,6 +12,9 @@ export default function HomePage() {
     nome={"home"}
     />
     
+    <button onClick={() => goToLogin(navigate)}>Login</button>
+    <button onClick={() => goToTripsList(navigate)}>Ver Viagens</button>
+    
         </div>
     )
 }

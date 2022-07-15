@@ -10,9 +10,7 @@ const Header = (props) => {
             case "home":
                 return <div>
                     <h2>HOME</h2>
-                    <button onClick={() => goToLogin(navigate)}>Login</button>
-                    <button onClick={() => goToTripsList(navigate)}>Ver Viagens</button>
-                </div>
+                     </div>
             case "trips detail":
                 return <div>
                     <h2>DETALHES DAS VIAGENS</h2>
