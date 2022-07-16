@@ -20,7 +20,7 @@ export const Rotas = () => {
           <Route path={"/admin/trips/create"} element={<CreateTripPage />} />
           <Route path={"/login"} element={<LoginPage />} />
           <Route path={"/admin/trips/:id"} element={<TripDetailsPage />} />
-          <Route path={"/trips/application"} element={<ApplicationFormPage />} />
+          <Route path={"/trips/application/:id"} element={<ApplicationFormPage />} />
           <Route path={"*"} element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>

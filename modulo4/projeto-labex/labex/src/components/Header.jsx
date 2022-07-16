@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { goToLogin, goToTripsList, goToAdminTripsList, goToAdminTipsCreate, goToHome, } from "../Routes/RouteFunctions"
 
-const Header = (props) => {
+export default function Header (props) {
 
     const navigate = useNavigate()
 
@@ -19,7 +19,7 @@ const Header = (props) => {
             case "admin home":
                 return <div>
                     <h2>ADMIN HOME</h2>
-                    <button onClick={() => goToAdminTipsCreate(navigate)}>Criar Viagem</button>,
+                    <button onClick={() => goToAdminTipsCreate(navigate)}>Criar Viagem</button>
                     <button onClick={() => goToLogin(navigate)}>Voltar</button>
                 </div>
             case "create trip":
@@ -52,4 +52,3 @@ const Header = (props) => {
     )
 }
 
-export default Header;

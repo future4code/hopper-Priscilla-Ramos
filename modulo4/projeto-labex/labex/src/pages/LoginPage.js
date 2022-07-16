@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import api from "../components/ConfigApi";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import { URL_BASE } from "../components/UrlBase";
+import axios from "axios";
 
 export default function LoginPage() {
 
@@ -20,7 +21,7 @@ export default function LoginPage() {
         }
 
         try {
-            const response = await api.post(`/login`, body)
+            const response = await axios.post(`${URL_BASE}/login`, body)
             console.log(response.data)
             localStorage.setItem("token", response.data.token)
             navigate ("/admin/trips/list")

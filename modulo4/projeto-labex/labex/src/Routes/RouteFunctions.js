@@ -1,6 +1,3 @@
-import React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-
 export const goToLogin =(navigate)=>{
     navigate("/login")
 }
@@ -21,8 +18,8 @@ export const goToAdminTipsCreate =(navigate)=>{
     navigate("/admin/trips/create")
 }
 
-export const goToAplly =(navigate)=>{
-    navigate("/trips/application")
+export const goToAplly =(navigate, id)=>{
+    navigate(`/trips/application/${id}`)
 }
 
 
