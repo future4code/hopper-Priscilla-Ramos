@@ -1,19 +1,10 @@
 import React from "react";
-import ApplicationFormPage from "./ApplicationFormPage";
 import { useNavigate } from "react-router-dom";
-import AdminHomePage from "./AdminHomePage";
 import useRequestData from "../Hooks/UseRequestData";
 import Header from "../components/Header";
 import { goToAplly } from "../Routes/RouteFunctions";
 import { URL_BASE } from "../components/UrlBase";
 
-
-// const CardViagens = styled.span`
-/* display: flex; */
-/* justify-content: center; */
-/* border: 2px solid grey; */
-//  `    
-/* TA QUEBRANDO O CÓDIGO!!! */
 
 export default function ListTripsPage() {
 
@@ -32,22 +23,7 @@ export default function ListTripsPage() {
         </div>
     })
 
-    const listaId = data && data.map(data => data.id);
-
-    const passaInfosAppForm = () => {
-        return <ApplicationFormPage
-            id={listaId}
-        />
-    }
-
-    const passaInfosAdminPage = () => {
-        <AdminHomePage
-            id={listaId}
-            lista={listaViagens}
-        />
-    }
-
-    return (
+     return (
         <div>
             <Header
             nome={"list trips"}
@@ -58,9 +34,7 @@ export default function ListTripsPage() {
             {!loading && data && data.length > 0 && listaViagens}
             {!loading && data && data.length === 0 && <p>Não há viagens!</p>}
             
-            {passaInfosAppForm()}
-            {passaInfosAdminPage()}
-           
+                  
         </div>
     )
 }
