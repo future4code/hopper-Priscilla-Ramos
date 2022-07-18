@@ -3,6 +3,7 @@ import { URL_BASE } from "../components/UrlBase";
 import { useProtectedPage } from "../Hooks/useProtectedPage";
 import Header from "../components/Header";
 import axios from "axios";
+import Button from '@mui/material/Button';
 
 
 export default function CreateTripPage() {
@@ -84,7 +85,7 @@ export default function CreateTripPage() {
                     onChange={(e) => setDurationInDays(e.target.value)}
                     value={durationInDays}></input>
 
-                <button onClick={() => createTrip()}>Enviar</button>
+                <Button onClick={() => createTrip()}>Enviar</Button>
             </form>
         </div>
     )

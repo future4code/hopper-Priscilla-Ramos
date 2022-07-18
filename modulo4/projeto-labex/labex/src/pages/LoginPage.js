@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { URL_BASE } from "../components/UrlBase";
 import axios from "axios";
+import Button from '@mui/material/Button';
 
 export default function LoginPage() {
 
@@ -50,7 +51,7 @@ export default function LoginPage() {
                 placeholder="senha"
             />
 
-            <button onClick={() => submitLogin()}>enviar</button>
+            <Button onClick={() => submitLogin()}>enviar</Button>
         </div>
     )
 }

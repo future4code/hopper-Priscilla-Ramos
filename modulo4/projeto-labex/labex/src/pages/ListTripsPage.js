@@ -4,6 +4,7 @@ import useRequestData from "../Hooks/UseRequestData";
 import Header from "../components/Header";
 import { goToAplly } from "../Routes/RouteFunctions";
 import { URL_BASE } from "../components/UrlBase";
+import Button from '@mui/material/Button';
 
 
 export default function ListTripsPage() {
@@ -19,7 +20,7 @@ export default function ListTripsPage() {
             <p ><strong>Planeta:</strong> {viagem.planet}</p>
             <p ><strong>Data:</strong> {viagem.date}</p>
             <p ><strong>Duração:</strong> {viagem.durationInDays}</p>
-            <button onClick={() => goToAplly(navigate, viagem.id)}>Aplicar</button>
+            <Button onClick={() => goToAplly(navigate, viagem.id)}>Inscrever</Button>
         </div>
     })
 

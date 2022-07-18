@@ -4,6 +4,7 @@ import axios from "axios";
 import { URL_BASE } from "../components/UrlBase";
 import { useParams } from "react-router-dom";
 import useForm from "../Hooks/useForm"
+import Button from '@mui/material/Button';
 
 function ApplicationFormPage() {
 
@@ -85,7 +86,7 @@ function ApplicationFormPage() {
                     name="country"
                     required
                     ></input>
-                <button>Apply</button>
+                <Button>Apply</Button>
             </form>
 
         </div>
