@@ -1,0 +1,17 @@
+{
+  "name": "node-package-json",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "soma": "node ./index.js soma 2 2 ",
+    "multiplicacao": "node ./index.js multiplicacao 2 2 ",
+    "divisao": "node ./index.js divisao 2 2 ",
+    "subtracao": "node ./index.js 'subtracao' 2 2 "
+  },
+  "keywords": [],
+  "author": "PriscillaLucena",
+  "license": "ISC"
+}
