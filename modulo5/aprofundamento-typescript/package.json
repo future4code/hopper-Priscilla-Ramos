@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "testa-ex1": "tsc && node build/ex1.js",
+    "testa-ex2": "tsc && node build/ex2.js",
+    "testa-ex3": "tsc && node build/ex3.js",
+    "testa-ex4": "tsc && node build/ex4.js",
+    "testa-ex5": "tsc && node build/ex5.js"
   },
   "keywords": [],
   "author": "Priscilla Lucena",
