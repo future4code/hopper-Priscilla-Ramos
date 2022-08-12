@@ -8,7 +8,7 @@
     "testa-ex1": "tsc && node build/ex1.js",
     "testa-ex2": "tsc && node build/ex2.js",
     "testa-ex3": "tsc && node build/ex3.js",
-    "testa-ex4": "tsc && node build/ex4.js",
+    "testa-ex4": "tsc && node build/exercicio-4.js",
     "testa-ex5": "tsc && node build/ex5.js"
   },
   "keywords": [],

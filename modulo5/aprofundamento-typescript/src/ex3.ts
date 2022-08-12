@@ -39,4 +39,4 @@ const posts: PostUser[] = [
   }
 
   console.log(posts)
-  buscarPostsPorAutor(posts,"Dobby")  //pensar pq ta dando erro!
+//   buscarPostsPorAutor(posts,"Dobby")  //pensar pq ta dando erro!
