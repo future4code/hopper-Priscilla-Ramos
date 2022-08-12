@@ -5,7 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node ./build/ex1.js"
+    "start": "tsc && node ./build/index.js",
+    "testa-ex1": "tsc && node ./build/ex1.js",
+    "testa-ex2": "tsc && node ./build/ex2.js",
+    "testa-ex3": "tsc && node ./build/ex3.js",
+    "testa-ex4": "tsc && node ./build/ex4.js",
+    "testa-ex5": "tsc && node ./build/ex5.js",
+    "testa-ex6": "tsc && node ./build/ex6.js",
+    "testa-ex7": "tsc && node ./build/ex7.js"
   },
   "keywords": [],
   "author": "Priscilla Lucena",
