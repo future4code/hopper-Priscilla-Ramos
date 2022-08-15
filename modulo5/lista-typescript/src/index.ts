@@ -35,19 +35,19 @@
 
 
 
-// function infosFilmes(nome: string, ano: number, genero: GENERO, pontuacao?: number): void {
-//     const filme = {
-//         nome: ,
-//         ano: ,
-//         genero: ,
-//         pontuacao?: 
+// function infosFilmes(nome: string, ano: number, genero: GENERO, pontuacao?: number): any {
+//     let filme = {
+//         nome: nome,
+//         ano: ano,
+//         genero: genero,
+//         pontuacao: pontuacao
 //     }
-    
-//        console.log(saida)
+
+//        return filme
 // }
 
 
-// infosFilmes("Duna", 2021, GENERO.ACAO, 74)
+// console.log(infosFilmes("Duna", 2021, GENERO.ACAO, 74))
 
 
 //4)
@@ -78,7 +78,7 @@
 //         return func.setor === "marketing" && 
 //         func.presencial === true;
 //     })
-    
+
 //     console.log(mktPresencial)
 
 //5)
@@ -113,15 +113,35 @@
 // }
 
 // const clientes: Contas[] = [
-// 	{ cliente: "João", saldoTotal: 1000, debitos: [100, 200, 300] },
-// 	{ cliente: "Paula", saldoTotal: 7500, debitos: [200, 1040] },
-// 	{ cliente: "Pedro", saldoTotal: 10000, debitos: [5140, 6100, 100, 2000] },
-// 	{ cliente: "Luciano", saldoTotal: 100, debitos: [100, 200, 1700] },
-// 	{ cliente: "Artur", saldoTotal: 1800, debitos: [200, 300] },
-// 	{ cliente: "Soter", saldoTotal: 1200, debitos: [] }
+//     { cliente: "João", saldoTotal: 1000, debitos: [100, 200, 300] },
+//     { cliente: "Paula", saldoTotal: 7500, debitos: [200, 1040] },
+//     { cliente: "Pedro", saldoTotal: 10000, debitos: [5140, 6100, 100, 2000] },
+//     { cliente: "Luciano", saldoTotal: 100, debitos: [100, 200, 1700] },
+//     { cliente: "Artur", saldoTotal: 1800, debitos: [200, 300] },
+//     { cliente: "Soter", saldoTotal: 1200, debitos: [] }
 // ]
 
-// function
 
+// function devedores(contas: any[]): any {
+
+//     function calculaSaldo(contas: any): any {
+//         let saldo = contas.saldoTotal
+//         let dividas = contas && contas.debitos.reduce((a: number, b: number) => { return a + b }, 0)
+//         let conta1 = { ...contas, saldoTotal: saldo - dividas, debitos: [] }
+
+//         return conta1
+//     }
+
+//     const contasAtualizadas: any[] = contas.map(calculaSaldo)
+
+//     const contasNegat: any[] = contasAtualizadas.filter((a)=>{
+//         return a.saldoTotal < 0
+
+//     })
+//     return contasNegat
+// }
+
+
+// console.log(devedores(clientes))
 
 
