@@ -106,34 +106,25 @@ app.get("/users", (req: Request, res: Response) => {
 
 
 app.get("/users/posts", (req: Request, res: Response) => {
-    let postagens = users.map((post)=>{
+    let postagens = users.map((post) => {
         return post.posts
     }).flat(1)
-            res.send(postagens)
+    res.send(postagens)
 })
 
 
 
 app.get("/users/:id/posts", (req: Request, res: Response) => {
-    let usersId: any = req.params.id
+    let usersId = Number(req.params.id)
 
     if (!usersId) {
         res.status(400).send("ID do usuário obrigatório")
     }
 
-    let postagens = users.map((post)=>{
-        return post.posts
-    }).flat(1)
-
-    let postUserId: any = postagens.map((user)=>{
-        return user.userId
+    let postUser = users.filter((user)=>{
+        return user.id === usersId
     })
 
-    if (usersId === postUserId){
-        return postagens
-    }
+    res.send(postUser)
 
-    res.send(postagens)
 })
-
-//tá voltando um array vazio com o filter. verificar!!!
