@@ -97,8 +97,13 @@ app.post("/todo/add", (req: Request, res: Response)=>{
 
 app.put("/todo/edit", (req: Request, res: Response)=>{
 
+    const idToDo = req.body.id
     const editCompleted = req.body.completed
 
-    
-
+    for (let todo of arrayToDo){
+        if (todo.id === idToDo){
+        [...arrayToDo, todo.completed = editCompleted]
+        }
+    }
+    res.send(arrayToDo)
 })
