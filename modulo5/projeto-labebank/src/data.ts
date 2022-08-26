@@ -2,7 +2,7 @@ export type Account = {
     name: string,
     birth: string,
     cpf: string,
-    saldo: number,
+    balance: number,
     extrato: {
         valor: number,
         date: string,
@@ -15,7 +15,7 @@ export const bank: Account[] = [
         name: "Paulo Pereira",
         birth: "22/04/1987",
         cpf: "016.986.123-01",
-        saldo: 2347.00,
+        balance: 2347.00,
         extrato: [{
             valor: 45.50,
             date: "25/08/2022",
@@ -31,7 +31,7 @@ export const bank: Account[] = [
         name: "Andreia Sazaki",
         birth: "03/01/1973",
         cpf: "043.011.432-02",
-        saldo: 10450.97,
+        balance: 10450.97,
         extrato: [{
             valor: 65.50,
             date: "23/08/2022",
@@ -47,7 +47,7 @@ export const bank: Account[] = [
         name: "Bruno Ramos",
         birth: "15/07/1993",
         cpf: "243.342.432-04",
-        saldo: 1450.97,
+        balance: 1450.97,
         extrato: [{
             valor: 25.50,
             date: "24/08/2022",
