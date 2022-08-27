@@ -4,7 +4,7 @@ export type Account = {
     cpf: string,
     balance: number,
     extract: {
-        valor: number,
+        value: number,
         date?: string,
         description: string
     }[]
@@ -17,12 +17,12 @@ export const bank: Account[] = [
         cpf: "016.986.123-01",
         balance: 2347.00,
         extract: [{
-            valor: 45.50,
+            value: 45.50,
             date: "25/08/2022",
             description: "lavagem do carro"
         },
         {
-            valor: 87.90,
+            value: 87.90,
             date: "24/08/2022",
             description: "jantarzin com momo"
         }]
@@ -33,12 +33,12 @@ export const bank: Account[] = [
         cpf: "043.011.432-02",
         balance: 10450.97,
         extract: [{
-            valor: 65.50,
+            value: 65.50,
             date: "23/08/2022",
             description: "café da manhã"
         },
         {
-            valor: 187.90,
+            value: 187.90,
             date: "24/08/2022",
             description: "almoço comida japonesa"
         }]
@@ -49,12 +49,12 @@ export const bank: Account[] = [
         cpf: "243.342.432-04",
         balance: 1450.97,
         extract: [{
-            valor: 25.50,
+            value: 25.50,
             date: "24/08/2022",
             description: "Mczeira do almoço"
         },
         {
-            valor: 3.50,
+            value: 3.50,
             date: "24/08/2022",
             description: "casquinha mista"
         }]

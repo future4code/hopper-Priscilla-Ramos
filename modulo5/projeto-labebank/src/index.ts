@@ -14,7 +14,7 @@ app.post("/users", (req: Request, res: Response) => {
 
         if (!name || !birth || !cpf) {
             errorCode = 422
-            throw new Error("Ausência de parâmetros query!");
+            throw new Error("Ausência de parâmetros no body!");
         }
 
         let birthTransform = birth.split("/");
@@ -55,15 +55,14 @@ app.get("/users/saldo", (req: Request, res: Response) => {
         }
 
         const validateUser = bank.filter((u) => {
-            return u.name.toLowerCase() === name.toLowerCase() &&
-                u.cpf === cpf
+            return u.name.toLowerCase() === name.toLowerCase() && u.cpf === cpf
         }).map(u => u.balance)
 
 
-        if (!validateUser) {
-            errorCode = 404
-            throw new Error("Usuário não encontrado!");
-        }
+        // if (!validateUser) {
+        //     errorCode = 404
+        //     throw new Error("Usuário não validado!");
+        // }
 
         res.status(200).send(`seu saldo é ${validateUser}`)
 
@@ -89,9 +88,12 @@ app.patch("/users/saldo", (req: Request, res: Response) => {
         for (let user of bank) {
             if (user.name.toLowerCase() === name.toLowerCase() && user.cpf === cpf) {
                 user.balance = user.balance + newBalance
-            }
+            } 
+            // else {
+            //     errorCode = 404
+            //     throw new Error("User não validado");
+            // }
         }
-
 
         const newAmount = bank.filter(u => u.name === name).map(u => u.balance)
 
@@ -107,50 +109,93 @@ app.post("/users/pagamento", (req: Request, res: Response) => {
 
     try {
 
-        let name = req.query.name as string
-        let cpf = req.query.cpf as string
+        const name = req.query.name as string
+        const cpf = req.query.cpf as string
 
-        let extract: any = {
-            value: req.body.value,
-            date: req.body.date,
-            description: req.body.description
+        let { value, date, description } = req.body
+        const date1 = new Date();
+        const today = date1.toLocaleDateString()
+
+        let newExtract: any = {
+            value: value,
+            date: date,
+            description: description
         }
 
         if (!name || !cpf) {
             errorCode = 422
-            throw new Error("Ausência de parâmetros query!");
+            throw new Error("Falta de parâmetros query");
         }
 
-        if (!extract.value || !extract.description) {
-            errorCode = 422
-            throw new Error("Ausência de parâmetros no body!");
-        }
+        // if (!date) {
+        //     date = today
+        // }
 
-        if (!extract.date) {
-            extract.date = new Date();
-        }
-
-        if (extract.date < new Date()) {
-            errorCode = 400
+        if (date < today) {
+            errorCode = 418
             throw new Error("Data de pagamento expirada");
         }
 
-        const userValidate = bank.filter((u) => {
-            u.name.toLowerCase() === name.toLowerCase() && u.cpf === cpf
-        })
+        let userBalance: any = 0
+        let userExtract: any = []
 
-        //ver qual o problema aqui que dá que o valor da divida e maior que o saldo
+        for (let user of bank) {
+            if (user.name.toLowerCase() === name.toLowerCase() && user.cpf === cpf) {
+                userBalance = user.balance
+                userExtract = user.extract
+            } 
+            // else {
+            //     errorCode = 404
+            //     throw new Error("Usuário não validado");
+            // }
+        }
 
-        // let valueBalance = userValidate.map(u => u.balance)  
+        if (userBalance > value) {
+            userExtract.push(newExtract)
+        } else {
+            errorCode = 422
+            throw new Error("Valor da conta maior que o saldo")
+        }
 
-        // if (extract.value > valueBalance) {
-        //     errorCode = 422
-        //     throw new Error("Valor a pagar é maior que o saldo total");
-        // }
+        const extractRefresh = bank.filter(u => u.name === name).map(u => u.extract)
 
-        const newExtract = userValidate.map(u => u.extract).push(extract)
+        res.status(200).send(extractRefresh)
 
-        res.status(200).send(newExtract)
+    } catch (error: any) {
+        res.status(errorCode).send(error.message)
+    }
+})
+
+app.post("/users/transferencia", (req: Request, res: Response) => {
+    let errorCode = 400
+    try {
+        const userName = req.query.userName as string
+        const userCpf = req.query.userCpf as string
+        const { recipientName, recipientCpf, value } = req.body
+
+        if (!userName || !userCpf) {
+            errorCode = 422
+            throw new Error("Falta de parâmetros query");
+        }
+
+        if (!recipientName || !recipientCpf || !value) {
+            errorCode = 422
+            throw new Error("Falta de parâmetros no body");
+        }
+
+       let userBalance: any = 0
+    
+        for (let user of bank) {
+            if (user.name === userName && user.cpf === userCpf) {
+                userBalance = user.balance - value
+            } 
+            // else {
+            //     errorCode = 404
+            //     throw new Error("User não validado");
+            // }
+        }
+
+        res.status(200).send(`Transferência realizada, seu novo saldo é ${userBalance}`)
 
     } catch (error: any) {
         res.status(errorCode).send(error.message)
@@ -158,12 +203,7 @@ app.post("/users/pagamento", (req: Request, res: Response) => {
 })
 
 
-
-
 app.listen(3003, () => {
     console.log("Server is running at 3003 port")
 })
 
-function u(u: any, arg1: (any: any) => any) {
-    throw new Error("Function not implemented.");
-}
