@@ -204,9 +204,9 @@ app.post("/users/pagamento", (req: Request, res: Response) => {
             throw new Error("Falta de parâmetros no body");
         }
 
-        if (!date) {
-            newExtract.date = today
-        }
+        // if (!date) {
+        //     newExtract.date = today
+        // }
 
         if (!validateUser.length) {
             errorCode = 404
