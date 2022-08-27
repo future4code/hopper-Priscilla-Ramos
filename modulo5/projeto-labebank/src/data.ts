@@ -3,9 +3,9 @@ export type Account = {
     birth: string,
     cpf: string,
     balance: number,
-    extrato: {
+    extract: {
         valor: number,
-        date: string,
+        date?: string,
         description: string
     }[]
 }
@@ -16,7 +16,7 @@ export const bank: Account[] = [
         birth: "22/04/1987",
         cpf: "016.986.123-01",
         balance: 2347.00,
-        extrato: [{
+        extract: [{
             valor: 45.50,
             date: "25/08/2022",
             description: "lavagem do carro"
@@ -32,7 +32,7 @@ export const bank: Account[] = [
         birth: "03/01/1973",
         cpf: "043.011.432-02",
         balance: 10450.97,
-        extrato: [{
+        extract: [{
             valor: 65.50,
             date: "23/08/2022",
             description: "café da manhã"
@@ -48,7 +48,7 @@ export const bank: Account[] = [
         birth: "15/07/1993",
         cpf: "243.342.432-04",
         balance: 1450.97,
-        extrato: [{
+        extract: [{
             valor: 25.50,
             date: "24/08/2022",
             description: "Mczeira do almoço"
@@ -61,8 +61,3 @@ export const bank: Account[] = [
     }
 ]
 
-export type Body = {
-    value: number,
-    description: string,
-    date?: any
-}

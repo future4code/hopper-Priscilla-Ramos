@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import { bank, Body } from "./data";
+import { bank, Account } from "./data";
 
 const app = express()
 
@@ -14,7 +14,7 @@ app.post("/users", (req: Request, res: Response) => {
 
         if (!name || !birth || !cpf) {
             errorCode = 422
-            throw new Error("Ausência de parâmetros no body!");
+            throw new Error("Ausência de parâmetros query!");
         }
 
         let birthTransform = birth.split("/");
@@ -51,7 +51,7 @@ app.get("/users/saldo", (req: Request, res: Response) => {
 
         if (!name || !cpf) {
             errorCode = 422
-            throw new Error("Ausência de parâmetros no body!");
+            throw new Error("Ausência de parâmetros query!");
         }
 
         const validateUser = bank.filter((u) => {
@@ -83,19 +83,15 @@ app.patch("/users/saldo", (req: Request, res: Response) => {
 
         if (!name || !cpf) {
             errorCode = 422
-            throw new Error("Ausência de parâmetros no body!");
+            throw new Error("Ausência de parâmetros query!");
         }
 
         for (let user of bank) {
-            if (user.name.toLowerCase() === name.toLowerCase()) {
-                if (user.cpf === cpf) {
-                    user.balance = user.balance + newBalance
-                } else {
-                    errorCode = 422
-                    throw new Error("CPF não bate com o Nome");
-                }
+            if (user.name.toLowerCase() === name.toLowerCase() && user.cpf === cpf) {
+                user.balance = user.balance + newBalance
             }
         }
+
 
         const newAmount = bank.filter(u => u.name === name).map(u => u.balance)
 
@@ -106,50 +102,55 @@ app.patch("/users/saldo", (req: Request, res: Response) => {
     }
 })
 
-app.put("users/pagamento", (req: Request, res: Response) => {
+app.post("/users/pagamento", (req: Request, res: Response) => {
     let errorCode = 400
+
     try {
 
-        const name = req.query.name as string
-        const cpf = req.query.cpf as string
+        let name = req.query.name as string
+        let cpf = req.query.cpf as string
 
-        let payment: Body = {
+        let extract: any = {
             value: req.body.value,
-            description: req.body.value,
-            date: req.body.date
+            date: req.body.date,
+            description: req.body.description
         }
 
         if (!name || !cpf) {
             errorCode = 422
+            throw new Error("Ausência de parâmetros query!");
+        }
+
+        if (!extract.value || !extract.description) {
+            errorCode = 422
             throw new Error("Ausência de parâmetros no body!");
         }
 
-        for (let user of bank) {
-            if (user.name.toLowerCase() === name.toLowerCase()) {
-                if (user.cpf === cpf) {
-                    const pay
-                } else {
-                    errorCode = 422
-                    throw new Error("CPF não bate com o Nome");
-                }
-            }
+        if (!extract.date) {
+            extract.date = new Date();
         }
 
-        if (!payment.date) {
-            payment.date = new Date();
-        }
-
-        if(payment.date < new Date ()){
+        if (extract.date < new Date()) {
             errorCode = 400
             throw new Error("Data de pagamento expirada");
         }
 
-        const paymentValue = 
+        const userValidate = bank.filter((u) => {
+            u.name.toLowerCase() === name.toLowerCase() && u.cpf === cpf
+        })
 
+        //ver qual o problema aqui que dá que o valor da divida e maior que o saldo
 
-        
+        // let valueBalance = userValidate.map(u => u.balance)  
 
+        // if (extract.value > valueBalance) {
+        //     errorCode = 422
+        //     throw new Error("Valor a pagar é maior que o saldo total");
+        // }
 
+        const newExtract = userValidate.map(u => u.extract).push(extract)
+
+        res.status(200).send(newExtract)
 
     } catch (error: any) {
         res.status(errorCode).send(error.message)
@@ -162,3 +163,7 @@ app.put("users/pagamento", (req: Request, res: Response) => {
 app.listen(3003, () => {
     console.log("Server is running at 3003 port")
 })
+
+function u(u: any, arg1: (any: any) => any) {
+    throw new Error("Function not implemented.");
+}
