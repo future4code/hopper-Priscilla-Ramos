@@ -61,3 +61,8 @@ export const bank: Account[] = [
     }
 ]
 
+export type Body = {
+    value: number,
+    description: string,
+    date?: any
+}

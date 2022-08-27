@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import { bank, Account } from "./data";
+import { bank, Body } from "./data";
 
 const app = express()
 
@@ -42,12 +42,12 @@ app.post("/users", (req: Request, res: Response) => {
 })
 
 
-app.get("/users", (req: Request, res: Response) => {
+app.get("/users/saldo", (req: Request, res: Response) => {
     let errorCode = 400
     try {
 
-        let name = req.query.name as string
-        let cpf = req.query.cpf as string
+        const name = req.query.name as string
+        const cpf = req.query.cpf as string
 
         if (!name || !cpf) {
             errorCode = 422
@@ -72,12 +72,13 @@ app.get("/users", (req: Request, res: Response) => {
     }
 })
 
-app.patch("/users", (req: Request, res: Response) => {
+
+app.patch("/users/saldo", (req: Request, res: Response) => {
     let errorCode = 400
     try {
 
-        let name = req.query.name as string
-        let cpf = req.query.cpf as string
+        const name = req.query.name as string
+        const cpf = req.query.cpf as string
         let newBalance = req.body.newBalance as number
 
         if (!name || !cpf) {
@@ -85,31 +86,75 @@ app.patch("/users", (req: Request, res: Response) => {
             throw new Error("Ausência de parâmetros no body!");
         }
 
-        if(!cpf){
-            errorCode = 422
-            throw new Error("CPF não bate com o Nome");
+        for (let user of bank) {
+            if (user.name.toLowerCase() === name.toLowerCase()) {
+                if (user.cpf === cpf) {
+                    user.balance = user.balance + newBalance
+                } else {
+                    errorCode = 422
+                    throw new Error("CPF não bate com o Nome");
+                }
+            }
         }
 
-        const validateUser: any = bank.filter((u) => {
-            return u.name.toLowerCase() === name.toLowerCase() &&
-                u.cpf === cpf
-        }).map(u => u.balance)
+        const newAmount = bank.filter(u => u.name === name).map(u => u.balance)
 
-        if (!validateUser) {
-            errorCode = 404
-            throw new Error("Usuário não encontrado!");
-        }
+        res.status(200).send(`o novo saldo é de R$ ${newAmount}`)
 
-        const newAmount: number = validateUser + newBalance
-
-        res.status(200).send(newAmount)
-
-     } catch (error: any) {
+    } catch (error: any) {
         res.status(errorCode).send(error.message)
     }
 })
 
+app.put("users/pagamento", (req: Request, res: Response) => {
+    let errorCode = 400
+    try {
 
+        const name = req.query.name as string
+        const cpf = req.query.cpf as string
+
+        let payment: Body = {
+            value: req.body.value,
+            description: req.body.value,
+            date: req.body.date
+        }
+
+        if (!name || !cpf) {
+            errorCode = 422
+            throw new Error("Ausência de parâmetros no body!");
+        }
+
+        for (let user of bank) {
+            if (user.name.toLowerCase() === name.toLowerCase()) {
+                if (user.cpf === cpf) {
+                    const pay
+                } else {
+                    errorCode = 422
+                    throw new Error("CPF não bate com o Nome");
+                }
+            }
+        }
+
+        if (!payment.date) {
+            payment.date = new Date();
+        }
+
+        if(payment.date < new Date ()){
+            errorCode = 400
+            throw new Error("Data de pagamento expirada");
+        }
+
+        const paymentValue = 
+
+
+        
+
+
+
+    } catch (error: any) {
+        res.status(errorCode).send(error.message)
+    }
+})
 
 
 
