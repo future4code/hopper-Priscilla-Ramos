@@ -5,7 +5,7 @@ export type Account = {
     balance: number,
     extract: {
         value: number,
-        date: string,
+        date?: string,
         description: string
     }[]
 }
@@ -41,6 +41,11 @@ export const bank: Account[] = [
             value: 187.90,
             date: "24/08/2022",
             description: "almoço comida japonesa"
+        },
+        {
+            value: 197.57,
+            date: "28/08/2022",
+            description: "conta de luz"
         }]
     },
     {
