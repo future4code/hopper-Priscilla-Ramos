@@ -5,7 +5,7 @@ export type Account = {
     balance: number,
     extract: {
         value: number,
-        date?: string,
+        date: string,
         description: string
     }[]
 }
