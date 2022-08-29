@@ -188,11 +188,22 @@ app.post("/users/pagamento", (req: Request, res: Response) => {
         const userBalance: number = validateUser.map((u: { balance: number; }) => u.balance)
         const userExtract: any[] = validateUser.map((u: { extract: any; }) => u.extract).flat(1)
 
-        let newExtract: any = {
-            value: value,
-            date: date,
-            description: description
+        let newExtract: any = {}
+
+        if (!date) {
+            newExtract = {
+                value: value,
+                date: today,
+                description: description
+            }
+        } else {
+            newExtract = {
+                value: value,
+                date: date,
+                description: description
+            }
         }
+
 
         if (!name || !cpf) {
             errorCode = 422
@@ -204,16 +215,12 @@ app.post("/users/pagamento", (req: Request, res: Response) => {
             throw new Error("Falta de parâmetros no body");
         }
 
-        // if (!date) {
-        //     newExtract.date = today
-        // }
-
         if (!validateUser.length) {
             errorCode = 404
             throw new Error("Usuário não validado!");
         }
 
-        if (date < today) {
+        if (newExtract.date < today) {
             errorCode = 418
             throw new Error("Data de pagamento expirada");
         }
