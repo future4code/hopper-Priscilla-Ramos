@@ -41,12 +41,7 @@ export default function Matches() {
 
     const [matches, setMatches] = useState([])
 
-    //renderiza na tela na primeira renderização
-
     useEffect(() => { getMatches() }, []);
-
-
-    //puxa os matches dados da API
 
     const getMatches = () => {
 
@@ -61,8 +56,6 @@ export default function Matches() {
             })
     };
 
-    //map para renderizar os matches
-
     const ListaMatch = matches.map((match) => {
         return <ContainerLista>
             <MatchImages src={match.photo} alt="foto usuário" />
@@ -72,7 +65,7 @@ export default function Matches() {
 
     return (
         <ContainerGeral>
-            
+
             <ImagemLogo src={logo} />
             {ListaMatch}
 

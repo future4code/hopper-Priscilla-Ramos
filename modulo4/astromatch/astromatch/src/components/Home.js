@@ -21,13 +21,12 @@ const ImagemCoracao = styled.div`
   margin-top: 0px;
   height: 90px;
     width: 280px;
-  button{
+  img{
     margin: 35px;
-    width: 55px;
+    width: 3vw;
     height: 45px;
     
   }
-  img{width: 3vw;}
 `
 const PhotoProfile = styled.img`
   margin-top: 6vh;
@@ -49,79 +48,63 @@ height: 110vh;
 
 export default function Home() {
 
-    const [infos, setInfos] = useState([])
-    const [id, setId] = useState("")
+  const [infos, setInfos] = useState([])
+  const [id, setId] = useState("")
 
-    //chama atualização da tela a cada atualização de perfil//
+  useEffect(() => { getProfile() }, []);
 
-    useEffect(() => { getProfile() }, []);
+  const getProfile = async () => {
+    const name = 'priscilla'
 
-    //chama o profile que ainda não foi visto//
+    try {
+      const response = await axios.get(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/${name}/person`)
+      setInfos([response.data.profile]);
+      setId(response.data.profile.id)
+      console.log(response.data.profile)
+    }
+    catch (error) {
+      console.log(error.response)
+    }
+  }
 
-    const getProfile = async () => {
-        const name = 'priscilla'
+  const addMatches = (choice) => {
 
-        try {
-            const response = await axios.get(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/${name}/person`)
-            setInfos([response.data.profile]);
-            setId(response.data.profile.id)
-            console.log(response.data.profile)
-        }
-        catch (error) {
-            console.log(error.response)
-        }
+    const body = {
+      id: id,
+      choice: choice
     }
 
-    // CHOOSE PERSON
+    axios.post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/:priscilla/choose-person', body)
+      .then(() => {
+        getProfile();
 
-    //post para quando curte e add a lista de matches
+      })
+      .catch((error) => {
+        console.log(error.response)
+      })
+  }
 
-    const addMatches = (choice) => {
+  const listaInfos = infos.map((profile) => {
+    return <ListaProfile key={profile.bio}>
 
-        const body = {
-            id: id,
-            choice: choice
-        }
-
-        axios.post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/:priscilla/choose-person', body)
-            .then(() => {
-                // alert('deu certo!');
-                getProfile();
-
-            })
-            .catch((error) => {
-                console.log(error.response)
-            })
-    }
-
-
-    // map pra renderizar os profiles na tela
-
-    const listaInfos = infos.map((profile) => {
-        return <ListaProfile key={profile.bio}>
-
-            <PhotoProfile src={profile.photo} alt="foto usuário" />
-            <h2>{profile.name}, {profile.age}</h2>
-            <p>{profile.bio}</p>
-            <ImagemCoracao>
-                <button onClick={() => addMatches(true)}>
-                    <img src={'https://w7.pngwing.com/pngs/1012/524/png-transparent-line-angle-leaf-philosophy-heart-and-arrow-love-angle-leaf.png'} />
-                </button>
-                <button onClick={() => addMatches(false)}>
-                    <img src={'https://i.pinimg.com/originals/d3/82/6a/d3826a943b0d3a9d54ec3d3cba01d0ef.png'} />
-                </button>
-            </ImagemCoracao>
-        </ListaProfile>
-    })
+      <PhotoProfile src={profile.photo} alt="foto usuário" />
+      <h2>{profile.name}, {profile.age}</h2>
+      <p>{profile.bio}</p>
+      <ImagemCoracao>
+        <span onClick={() => addMatches(true)} class="material-icons"> heart_broken </span>
+        <span onClick={() => addMatches(false)} class="material-icons"> favorite </span>
+      </ImagemCoracao>
+    </ListaProfile>
+  })
 
 
-    return (
-        <ContainerGeral>
+  return (
+    <ContainerGeral>
 
-            <ImagemLogo src={logo} />
+      <ImagemLogo src={logo} />
 
-            {listaInfos}
+      {listaInfos}
 
-        </ContainerGeral>
-    )
+    </ContainerGeral>
+  )
 }
