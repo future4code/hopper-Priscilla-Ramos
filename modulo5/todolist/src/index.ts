@@ -1,4 +1,4 @@
-import express, {Express, Request, Response } from "express";
+import express, {Express, Request, response, Response } from "express";
 import knex from "knex";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -50,7 +50,15 @@ app.post("/user", async (req: Request, res: Response) => {
     }
 });
 
-
+app.get ("/user/:id", async (req: Request, res: Response)=>{
+    let errorCode = 400
+    try {
+        
+        
+    } catch (error: any) {
+        res.status(errorCode).send(error.message)
+    }
+})
 
 
 const server = app.listen(process.env.PORT || 3003, () => {
