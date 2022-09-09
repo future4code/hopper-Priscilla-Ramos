@@ -3,7 +3,7 @@ import knex from "knex";
 import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
-import {User} from "./types"
+import {User, Task, STATUS, Body} from "./types"
 
 dotenv.config();
 
@@ -35,6 +35,7 @@ app.post("/user", async (req: Request, res: Response) => {
         }
 
         if (!name || !nickname || !email){
+            errorCode = 422
             throw new Error("Precisa inserir nome, nickname e email para o cadastro.");
         }
 
@@ -53,12 +54,99 @@ app.post("/user", async (req: Request, res: Response) => {
 app.get ("/user/:id", async (req: Request, res: Response)=>{
     let errorCode = 400
     try {
-        
+        const id = Number(req.params.id)
+
+        const resposta = await connection.raw (`
+         SELECT * FROM TodoListUser
+         WHERE ID = ${id}
+        `)
+
+        res.status(200).send(resposta[0])
         
     } catch (error: any) {
         res.status(errorCode).send(error.message)
     }
-})
+});
+
+app.put ("/user/edit/:id", async  (req: Request, res: Response)=>{
+    let errorCode = 400
+    try {
+
+        const user_id = Number(req.params.id)
+        const {name, nickname } = req.body
+
+        if (!name || !nickname){
+            errorCode = 422
+            throw new Error("Precisa colocar nome e apelido para fazer a alteração.");
+        }
+
+        await connection.raw (`
+        UPDATE TodoListUser
+        SET name = "${name}", nickname = "${nickname}"
+        WHERE id = ${user_id}
+        `);
+
+        res.status(200).send("Usuário Alterado!")
+
+    } catch (error: any) {
+        res.status(errorCode).send(error.message)
+    }
+});
+
+app.post ("/task", async  (req: Request, res: Response)=>{
+    let errorCode = 400
+    try {
+
+        const {title, description, limit_date, creator_user_id} = req.body
+
+        const newTask: Task = {
+            id: Date.now(), title, description, limit_date, creator_user_id
+        }
+
+        if(!title || !description || !limit_date || !creator_user_id){
+            errorCode = 422
+            throw new Error("Precisa do titulo, descrição e data limite");
+        }
+
+        await connection.raw(`
+        INSERT INTO TodoListTask (id, title, description, limit_date, creator_user_id)
+        VALUES (${newTask.id}, "${newTask.title}", "${newTask.description}", STR_TO_DATE ("${newTask.limit_date}", '%d/%m/%Y'),
+        "${newTask.creator_user_id}")
+        `)
+
+        res.status(200).send("Tarefa Criada!")
+
+    } catch (error: any) {
+        res.status(errorCode).send(error.message)
+    }
+});
+
+app.get ("/task/:id", async  (req: Request, res: Response)=>{
+    let errorCode = 400
+    try {
+
+        const id = Number(req.params.id)
+
+        const resposta = await connection.raw (`
+        SELECT * FROM TodoListTask
+        WHERE id = ${id};
+       `)
+
+        const creatorUserNickname = await connection.raw (`
+        SELECT nickname From TodoListUser
+        WHERE id = ${id}
+        `)
+
+        const bodyResposta: any = {
+            resposta, creatorUserNickname
+        }
+
+        res.status(200).send(bodyResposta)
+
+    } catch (error: any) {
+        res.status(errorCode).send(error.message)
+    }
+});
 
 
 const server = app.listen(process.env.PORT || 3003, () => {
