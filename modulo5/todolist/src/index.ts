@@ -125,23 +125,25 @@ app.get ("/task/:id", async  (req: Request, res: Response)=>{
     let errorCode = 400
     try {
 
-        const id = Number(req.params.id)
+        const id = req.params.id
 
         const resposta = await connection.raw (`
-        SELECT * FROM TodoListTask
-        WHERE id = ${id};
+        SELECT TodoListTask.id AS taskId, title, description, status, limit_date, 
+        TodoListUser.id AS creatorUserId,
+        nickname AS creatorUserNickname FROM TodoListUser 
+        JOIN TodoListTask ON TodoListUser.id = TodoListTask.creator_user_id;
        `)
 
-        const creatorUserNickname = await connection.raw (`
-        SELECT nickname From TodoListUser
-        WHERE id = ${id}
-        `)
+       const tasks = resposta[0].filter((u: any)=>{
+            return u.taskId === id
+       }).map((u: any) => u)
 
-        const bodyResposta: any = {
-            resposta, creatorUserNickname
-        }
-
-        res.status(200).send(bodyResposta)
+       if(!tasks){
+        errorCode = 422
+        throw new Error("Tarefa não encontrada!");
+       }
+       
+        res.status(200).send(tasks)
 
     } catch (error: any) {
         res.status(errorCode).send(error.message)
