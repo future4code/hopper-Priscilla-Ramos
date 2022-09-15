@@ -1,5 +1,9 @@
 import { app } from "./app";
-import { getAllUsers, getUserByName, getUserByType, getOrdenatedUser, getUserPage} from "./endpoints/getAllUsers";
+import { getAllUsers } from "./endpoints/getAllUsers";
+import { getUserByName } from "./endpoints/getUserByName";
+import { getUserByType } from "./endpoints/getUserByType";
+import { getOrdenatedUser } from "./endpoints/getOrdenatedUser";
+import { getUserPage } from "./endpoints/getUserPage";
 
 app.get("/users", getAllUsers);
 
