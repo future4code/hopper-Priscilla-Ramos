@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { connection } from "../database/connection";
 import { User } from "../types"
 
-export const registrerUser = async (req: Request, res: Response): Promise<void> => {
+export const registerUser = async (req: Request, res: Response): Promise<void> => {
     let errorCode = 400
     try {
 
