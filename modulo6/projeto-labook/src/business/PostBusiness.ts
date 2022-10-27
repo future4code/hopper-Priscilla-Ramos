@@ -1,59 +1,56 @@
-async (req: Request, res: Response) => {
+import { PostDataBase } from "../data/PostDataBase";
+import { post } from "../model/PostDTO";
+import { generateId } from "../services/GenerateId";
+
+export const createPost = async (input: post) => {
+    let statusCode = 400
     try {
-       let message = "Success!"
- 
-       const { photo, description, type, authorId } = req.body
- 
-       const postId: string = generateId()
- 
-       await connection("labook_posts")
-          .insert({
-             id:postId,
-             photo,
-             description,
-             type,
-             author_id: authorId
-          })
- 
-       res.status(201).send({ message })
- 
-    } catch (error:any) {
-       let message = error.sqlMessage || error.message
-       res.statusCode = 400
-       res.send({ message })
+
+        const { photo, description, type, createdAt, authorId } = input
+
+        if (!photo || !description || !type || !createdAt || !authorId) {
+            statusCode = 404
+            throw new Error("Precisa passar todos os parâmentros");
+            //ver sobre curstom error            
+        }
+
+        const postId: string = generateId()
+
+        const postDB = new PostDataBase()
+
+        await postDB.insertPost({
+            postId,
+            photo,
+            description,
+            type,
+            createdAt,
+            authorId
+        })
+
+
+    } catch (error: any) {
+        throw new Error(error.message);
     }
- })
- 
- app.get('/posts/:id', async (req: Request, res: Response) => {
+};
+
+//  ----------------------GET-----------------------
+
+export const getPost = async (postId: any) => {
+    let statusCode = 400
     try {
-       let message = "Success!"
- 
-       const { id } = req.params
- 
-       const queryResult: any = await connection("labook_posts")
-          .select("*")
-          .where({ id })
- 
-       if (!queryResult[0]) {
-          res.statusCode = 404
-          message = "Post not found"
-          throw new Error(message)
-       }
- 
-       const post: post = {
-          id: queryResult[0].id,
-          photo: queryResult[0].photo,
-          description: queryResult[0].description,
-          type: queryResult[0].type,
-          createdAt: queryResult[0].created_at,
-          authorId: queryResult[0].author_id,
-       }
- 
-       res.status(200).send({ message, post })
- 
-    } catch (error:any) {
-       let message = error.sqlMessage || error.message
-       res.statusCode = 400
-       res.send({ message })
+        const { id } = postId
+
+        const postDB = new PostDataBase()
+
+        const response: any = await postDB.getPosts(id)
+
+        if (response.length < 1) {
+            statusCode = 404
+            throw new Error("Post not found")
+            //ver custom error!!
+        }
+
+    } catch (error: any) {
+        throw new Error(error.message);
     }
- })
+};
