@@ -1,30 +1,25 @@
-export class UserController 
+import { Request, Response } from "express"
+import { UserBusiness } from "../business/UserBusiness"
 
-try {
-    let message = "Success!"
-    const { name, email, password } = req.body
+export class UserController {
 
-    if (!name || !email || !password) {
-       res.statusCode = 406
-       message = '"name", "email" and "password" must be provided'
-       throw new Error(message)
-    }
+   public createUser = async (req: Request, res: Response) => {
+      try {
 
-    const id: string = generateId()
+         const { name, email, password } = req.body
 
-    await UserDataBase.connection('labook_users')
-       .insert({
-          id,
-          name,
-          email,
-          password
-       })
+         const input: any = {name, email, password }
 
-    res.status(201).send({ message })
+         const userBusiness = new UserBusiness()
+         await userBusiness.createUser(input)
 
- } catch (error:any) {
-    res.statusCode = 400
-    let message = error.sqlMessage || error.message
-    res.send({ message })
- }
-})
+
+         res.status(201).send("Success!")
+
+      } catch (error: any) {
+         res.statusCode = 400
+         let message = error.sqlMessage || error.message
+         res.send({ message })
+      }
+   };
+}
