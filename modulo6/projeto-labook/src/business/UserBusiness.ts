@@ -2,30 +2,34 @@ import { UserDataBase } from "../data/UserDataBase"
 import { user } from "../model/UserDTO"
 import { generateId } from "../services/GenerateId"
 
-export const createUser = async (input: user) => {
-    let statusCode = 400
-    try {
 
-        const { name, email, password } = input
+export class UserBusiness {
 
-        if (!name || !email || !password) {
-            statusCode = 406
-            throw new Error('"name", "email" and "password" must be provided')
-            //ver custom error!!
+    public createUser = async (input: user) => {
+        let statusCode = 400
+        try {
+
+            const { name, email, password } = input
+
+            if (!name || !email || !password) {
+                statusCode = 406
+                throw new Error('"name", "email" and "password" must be provided')
+                //ver custom error!!
+            }
+
+            const id: string = generateId()
+
+            const userDB = new UserDataBase()
+
+            await userDB.insertUser({
+                id,
+                name,
+                email,
+                password
+            })
+
+        } catch (error: any) {
+            throw new Error(error.message);
         }
-
-        const id: string = generateId()
-
-        const userDB = new UserDataBase()
-
-        await userDB.insertUser({
-            id,
-            name,
-            email,
-            password
-        })
-
-    } catch (error: any) {
-        throw new Error(error.message);
-    }
-};
+    };
+}
