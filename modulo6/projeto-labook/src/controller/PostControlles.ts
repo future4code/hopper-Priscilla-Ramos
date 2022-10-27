@@ -1,59 +1,47 @@
 import { Request, Response } from "express"
+import { PostBusiness } from "../business/PostBusiness"
+import { UserBusiness } from "../business/UserBusiness";
 
-export const createPost =
-   async (req: Request, res: Response) => {
+export class PostController {
+
+   public createPost = async (req: Request, res: Response) => {
       try {
-         let message = "Success!"
 
-         const { photo, description, type, authorId } = req.body
+         const { photo, description, type, createdAt, authorId } = req.body
 
-         const input = { photo, description, type, authorId }
+         const input: any = { photo, description, type, createdAt, authorId }
 
-         const userBusiness = new UserBusiness()
+         const postBusiness = new PostBusiness()
+         await postBusiness.createPost(input)
 
-         res.status(201).send({ message })
+         res.status(201).send("Success!")
 
       } catch (error: any) {
          let message = error.sqlMessage || error.message
          res.statusCode = 400
          res.send({ message })
       }
-   }
+   };
 
-//  ----------------------GET-----------------------
 
-app.get('/posts/:id', async (req: Request, res: Response) => {
-   try {
-      let message = "Success!"
+   public getPost = async (req: Request, res: Response) => {
+      try {
 
-      const { id } = req.params
+         const { id } = req.params
 
-      const queryResult: any = await connection("labook_posts")
-         .select("*")
-         .where({ id })
+         const postBusiness = new PostBusiness()
+         const response = await postBusiness.getPost(id)
 
-      if (!queryResult[0]) {
-         res.statusCode = 404
-         message = "Post not found"
-         throw new Error(message)
+         res.status(200).send(response)
+
+      } catch (error: any) {
+         let message = error.sqlMessage || error.message
+         res.statusCode = 400
+         res.send({ message })
       }
-
-      const post: post = {
-         id: queryResult[0].id,
-         photo: queryResult[0].photo,
-         description: queryResult[0].description,
-         type: queryResult[0].type,
-         createdAt: queryResult[0].created_at,
-         authorId: queryResult[0].author_id,
-      }
-
-      res.status(200).send({ message, post })
-
-   } catch (error: any) {
-      let message = error.sqlMessage || error.message
-      res.statusCode = 400
-      res.send({ message })
-   }
-})
+   };
 }
 
+
+
+}

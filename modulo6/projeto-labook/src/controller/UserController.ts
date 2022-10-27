@@ -1,3 +1,5 @@
+export class UserController 
+
 try {
     let message = "Success!"
     const { name, email, password } = req.body
