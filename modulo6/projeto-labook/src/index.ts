@@ -1,30 +1,21 @@
-/**************************** IMPORTS ******************************/
-
-import express, { Express, Request, Response } from "express"
+import express, { Express } from "express"
 import cors from "cors"
-import { generateId } from "./services/GenerateId"
-import { post } from "./model/PostDTO"
+import { userRouter } from "./routes/UserRouter"
+import { postRouter } from "./routes/PostRouter"
 
 const app: Express = express()
 app.use(express.json())
 app.use(cors())
 
+// ----CreateUser----
+app.use('/user', userRouter)
+// ----InsertFriend----
+app.use('/user', userRouter)
+// ----CreatePost----
+app.use('/post', postRouter)
+// ----GetPost----
+app.use('/post/', postRouter)
 
-/**************************** CONFIG ******************************/
-
-/**************************** TYPES ******************************/
-
-/**************************** SERVICES ******************************/
-
-/**************************** ENDPOINTS ******************************/
-
-app.post('/users', )
-
-app.post('/post', )
-
-app.get('/posts/:id', )
-
-/**************************** SERVER INIT ******************************/
 
 app.listen(3003, () => {
    console.log("Server running on port 3003")

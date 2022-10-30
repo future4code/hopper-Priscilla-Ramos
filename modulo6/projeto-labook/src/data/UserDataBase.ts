@@ -1,5 +1,4 @@
-import { user } from "../model/UserDTO";
-import { generateId } from "../services/GenerateId";
+import { friend, user } from "../model/UserDTO";
 import { BaseDataBase } from "./BaseDataBase";
 
 export class UserDataBase extends BaseDataBase {
@@ -17,12 +16,12 @@ export class UserDataBase extends BaseDataBase {
         return newUser
     };
 
-    public inserFriendship = async (user: user) => {
+    public inserFriendship = async (user: friend) => {
 
         const newFriendship = await UserDataBase.connection('labook_users')
             .insert({
-                id: user.id,
-                name: user.name,
+                friend_id: user.friendId,
+                friend_name: user.friendName,
             })
 
         return newFriendship

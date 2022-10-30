@@ -39,16 +39,4 @@ export class PostController {
          res.send({ message })
       }
    };
-
-   // public getPostById = async (req: Request, res: Response) => {
-   //    try {   
-
-
-
-   //    } catch (error: any) {
-   //       let message = error.sqlMessage || error.message
-   //       res.statusCode = 400
-   //       res.send({ message })
-   //    }
-   // };
 }

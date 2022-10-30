@@ -25,10 +25,12 @@ export class UserController {
    public insertFriendship = async (req: Request, res: Response) => {
       try {
 
-         const id = req.body
+         const { id, name } = req.body
+
+         const input: any = { id, name }
 
          const userBusiness = new UserBusiness()
-         const response = await userBusiness.insertFriendship(id)
+         await userBusiness.insertFriendship(input)
 
          res.status(200).send("Amizade feita com sucesso!")
 
