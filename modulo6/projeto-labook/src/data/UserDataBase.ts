@@ -5,8 +5,8 @@ import { BaseDataBase } from "./BaseDataBase";
 export class UserDataBase extends BaseDataBase {
 
     public insertUser = async (user: user) => {
-       
-       const newUser = await UserDataBase.connection('labook_users')
+
+        const newUser = await UserDataBase.connection('labook_users')
             .insert({
                 id: user.id,
                 name: user.name,
@@ -14,6 +14,17 @@ export class UserDataBase extends BaseDataBase {
                 password: user.password
             })
 
-            return newUser
+        return newUser
+    };
+
+    public inserFriendship = async (user: user) => {
+
+        const newFriendship = await UserDataBase.connection('labook_users')
+            .insert({
+                id: user.id,
+                name: user.name,
+            })
+
+        return newFriendship
     };
 }

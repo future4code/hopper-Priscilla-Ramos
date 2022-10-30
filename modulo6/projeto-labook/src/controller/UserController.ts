@@ -8,13 +8,29 @@ export class UserController {
 
          const { name, email, password } = req.body
 
-         const input: any = {name, email, password }
+         const input: any = { name, email, password }
 
          const userBusiness = new UserBusiness()
          await userBusiness.createUser(input)
 
-
          res.status(201).send("Success!")
+
+      } catch (error: any) {
+         res.statusCode = 400
+         let message = error.sqlMessage || error.message
+         res.send({ message })
+      }
+   };
+
+   public insertFriendship = async (req: Request, res: Response) => {
+      try {
+
+         const id = req.body
+
+         const userBusiness = new UserBusiness()
+         const response = await userBusiness.insertFriendship(id)
+
+         res.status(200).send("Amizade feita com sucesso!")
 
       } catch (error: any) {
          res.statusCode = 400

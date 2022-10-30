@@ -32,4 +32,23 @@ export class UserBusiness {
             throw new Error(error.message);
         }
     };
+
+    public insertFriendship = async (userId: any) => {
+        let statusCode = 400
+        try {
+            const { id } = userId
+
+            const userDB = new UserDataBase()
+            const response = await userDB.inserFriendship(id)
+
+            if (response.length < 1) {
+                statusCode = 404
+                throw new Error("Post not found")
+                //ver custom error!!
+            }
+
+        } catch (error: any) {
+            throw new Error(error.message);
+        }
+    };
 }
