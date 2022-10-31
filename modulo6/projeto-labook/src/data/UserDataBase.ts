@@ -1,4 +1,4 @@
-import { friend, user } from "../model/UserDTO";
+import { allUser, friend, user } from "../model/UserDTO";
 import { BaseDataBase } from "./BaseDataBase";
 
 export class UserDataBase extends BaseDataBase {
@@ -25,5 +25,24 @@ export class UserDataBase extends BaseDataBase {
             })
 
         return newFriendship
+    };
+
+    public getUser = async () => {
+
+        const queryResult: any = await UserDataBase.connection('labook_users')
+            .select("*")
+
+        const users: allUser = {
+            id: queryResult[0].id,
+            name: queryResult[0].name,
+            email: queryResult[0].email,
+            password: queryResult[0].password,
+            friends: {
+                friendId: queryResult[0].friend_id,
+                friendName: queryResult[0].friend_name
+            }
+        }
+
+        return users
     };
 }

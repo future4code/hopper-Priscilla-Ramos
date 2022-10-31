@@ -11,10 +11,12 @@ app.use(cors())
 app.use('/user', userRouter)
 // ----InsertFriend----
 app.use('/user', userRouter)
+// ----GetAllUsers----
+app.use('/user', userRouter)
 // ----CreatePost----
 app.use('/post', postRouter)
 // ----GetPost----
-app.use('/post/', postRouter)
+app.use('/post', postRouter)
 
 
 app.listen(3003, () => {

@@ -36,7 +36,9 @@ export class UserBusiness {
     public insertFriendship = async (input: any) => {
         let statusCode = 400
         try {
-            const { friendId, friendName } = input
+            const { friendId } = input
+
+            // const friendName = await userDB.getUser()
 
             const userDB = new UserDataBase()
             await userDB.inserFriendship({
