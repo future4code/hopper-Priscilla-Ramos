@@ -25,9 +25,10 @@ export class UserController {
    public insertFriendship = async (req: Request, res: Response) => {
       try {
 
-         const { id } = req.body
+         const { friend_id } = req.body
+         const { id } = req.params
 
-         const input: any = { id }
+         const input: any = { friend_id, id }
 
          const userBusiness = new UserBusiness()
          await userBusiness.insertFriendship(input)
@@ -45,7 +46,7 @@ export class UserController {
       try {
 
          const userBusiness = new UserBusiness()
-         const response = await userBusiness.getUser()
+         // const response = await userBusiness.getUser()
          
       } catch (error: any) {
          res.statusCode = 400

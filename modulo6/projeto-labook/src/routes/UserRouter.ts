@@ -6,6 +6,6 @@ const userController = new UserController()
 
 userRouter.post("/create", userController.createUser)
 
-userRouter.post("/friend", userController.insertFriendship)
+userRouter.post("/friend/:id", userController.insertFriendship)
 
 userRouter.get("/getAll", userController.getUsers)

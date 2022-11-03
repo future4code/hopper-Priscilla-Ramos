@@ -16,33 +16,27 @@ export class UserDataBase extends BaseDataBase {
         return newUser
     };
 
-    public inserFriendship = async (user: friend) => {
+    public insertFriendship = async (input: any) => {
 
-        const newFriendship = await UserDataBase.connection('labook_users')
-            .insert({
-                friend_id: user.friendId,
-                friend_name: user.friendName,
-            })
+        const newFriendship = await UserDataBase.connection.raw(`
+            INSERT INTO 'labook_users'
+            WHERE id = ${input.id}
+            VALUES ("friend_id", "friend_name"),
+            ("${input.friendId}", "${input.friendName}")
+        `)
+            // .insert({
+            //     friend_id: input.friendId,
+            //     friend_name: input.friendName,
+            // }).where({input_id})
 
         return newFriendship
     };
 
-    public getUser = async () => {
+    public userName = async (friendId: allUser) => {
 
-        const queryResult: any = await UserDataBase.connection('labook_users')
-            .select("*")
+        const users: any = await UserDataBase.connection('labook_users')
+            .select("name").where(friendId)
 
-        const users: allUser = {
-            id: queryResult[0].id,
-            name: queryResult[0].name,
-            email: queryResult[0].email,
-            password: queryResult[0].password,
-            friends: {
-                friendId: queryResult[0].friend_id,
-                friendName: queryResult[0].friend_name
-            }
-        }
-
-        return users
+             return users
     };
 }

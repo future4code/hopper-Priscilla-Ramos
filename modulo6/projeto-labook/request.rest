@@ -9,9 +9,12 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3003/user/friend
+POST  http://localhost:3003/user/friend/:a0162e35-be8d-424f-964b-931813f051dc
 Content-Type: application/json
 
 {
     "friend_id": "10b4571d-7a28-4bde-854c-ff91c1d6b134",
 }
+
+###
+GET http://localhost:3003/user

@@ -36,17 +36,16 @@ export class UserBusiness {
     public insertFriendship = async (input: any) => {
         let statusCode = 400
         try {
-            const { friendId } = input
-
-            // const friendName = await userDB.getUser()
+            const { friendId, id } = input
 
             const userDB = new UserDataBase()
-            await userDB.inserFriendship({
+            const friendName = await userDB.userName(friendName)
+            await userDB.insertFriendship({
                 friendId,
                 friendName
             })
 
-            if (!friendId || !friendName) {
+            if (!friendId) {
                 statusCode = 406
                 throw new Error('friend id must be provided')
                 //ver custom error!!
@@ -57,3 +56,4 @@ export class UserBusiness {
         }
     };
 }
+
