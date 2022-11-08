@@ -4,9 +4,9 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-   "name": "Norman Osbourne", 
-   "nickname": "Green Goblin", 
-   "email": "osbourne@oscorp.com" ,
+   "name": "Norman", 
+   "nickname": "Green ", 
+   "email": "green@oscorp.com" ,
    "password": "ihatepeter"
 }
 

@@ -24,3 +24,7 @@ export interface EditUserInput {
    nickname: string,
    id: string
 }
+
+export type AuthenticationData = {
+   id: string
+}

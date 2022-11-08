@@ -4,7 +4,7 @@ import { EditUserInputDTO, UserInputDTO } from "../model/user";
 
 export class UserController {
 
-      public createUser = async (req: Request, res: Response) => {
+      public signUp = async (req: Request, res: Response) => {
         try {
           const { name, nickname, email, password } = req.body;
     
@@ -15,9 +15,9 @@ export class UserController {
             password,
           };
           const userBusiness = new UserBusiness()
-          userBusiness.createUser(input);
+          const token = await userBusiness.signUp(input);
     
-          res.status(201).send({ message: "Usuário criado!" });
+          res.status(201).send({ message: "Usuário criado!", token });
         } catch (error: any) {
           res.status(400).send(error.message);
         }

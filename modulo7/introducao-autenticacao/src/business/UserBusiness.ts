@@ -6,10 +6,14 @@ import {
   EditUserInputDTO,
   EditUserInput,
 } from "../model/user";
+import { Authenticator } from "../services/Authenticator";
 import { GenerateId } from "../services/GenerateId";
 
+const authenticator = new Authenticator()
+const idGenerator = new GenerateId()
+
 export class UserBusiness {
-  public createUser = async (input: UserInputDTO) => {
+  public signUp = async (input: UserInputDTO) => {
     try {
       const { name, nickname, email, password } = input;
 
@@ -28,7 +32,6 @@ export class UserBusiness {
         throw new InvalidEmail();
       }
 
-      const idGenerator = new GenerateId()
       const id: string = idGenerator.generateId();
 
       const user: user = {
@@ -40,6 +43,10 @@ export class UserBusiness {
       };
       const userDatabase = new UserDatabase();
       await userDatabase.insertUser(user);
+
+      const token = authenticator.generateToken({ id })
+
+      return token
     } catch (error: any) {
       throw new CustomError(400, error.message);
     }
