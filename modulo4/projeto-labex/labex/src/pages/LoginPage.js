@@ -5,6 +5,7 @@ import { URL_BASE } from "../components/UrlBase";
 import axios from "axios";
 import Button from '@mui/material/Button';
 
+
 export default function LoginPage() {
 
     const navigate = useNavigate ()
@@ -36,7 +37,7 @@ export default function LoginPage() {
             <Header
             nome={"login"}
             />
-
+        
             <input
                 type="email"
                 value={email}
@@ -48,10 +49,11 @@ export default function LoginPage() {
                 type="password"
                 value={password}
                 onChange={(e)=>setPassword(e.target.value)}
-                placeholder="senha"
+                label="senha"
             />
 
-            <Button onClick={() => submitLogin()}>enviar</Button>
+            <Button variant="outlined" onClick={() => submitLogin()}>enviar</Button>
+       
         </div>
     )
 }

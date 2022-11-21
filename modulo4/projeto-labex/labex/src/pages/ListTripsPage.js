@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import { goToAplly } from "../Routes/RouteFunctions";
 import { URL_BASE } from "../components/UrlBase";
 import Button from '@mui/material/Button';
-
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function ListTripsPage() {
 
@@ -20,7 +20,7 @@ export default function ListTripsPage() {
             <p ><strong>Planeta:</strong> {viagem.planet}</p>
             <p ><strong>Data:</strong> {viagem.date}</p>
             <p ><strong>Duração:</strong> {viagem.durationInDays}</p>
-            <Button onClick={() => goToAplly(navigate, viagem.id)}>Inscrever</Button>
+            <Button variant="outlined" onClick={() => goToAplly(navigate, viagem.id)}>Inscrever</Button>
         </div>
     })
 
@@ -30,7 +30,7 @@ export default function ListTripsPage() {
             nome={"list trips"}
             />
        
-            {loading && <p>Carregando...</p>}
+            {loading && <CircularProgress />}
             {!loading && error && <p>Deu Ruim!</p>}
             {!loading && data && data.length > 0 && listaViagens}
             {!loading && data && data.length === 0 && <p>Não há viagens!</p>}

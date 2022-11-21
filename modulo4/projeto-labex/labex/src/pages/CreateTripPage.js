@@ -85,7 +85,7 @@ export default function CreateTripPage() {
                     onChange={(e) => setDurationInDays(e.target.value)}
                     value={durationInDays}></input>
 
-                <Button onClick={() => createTrip()}>Enviar</Button>
+                <Button variant="outlined" onClick={() => createTrip()}>Enviar</Button>
             </form>
         </div>
     )

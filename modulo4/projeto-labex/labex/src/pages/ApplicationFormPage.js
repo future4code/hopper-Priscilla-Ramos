@@ -5,28 +5,34 @@ import { URL_BASE } from "../components/UrlBase";
 import { useParams } from "react-router-dom";
 import useForm from "../Hooks/useForm"
 import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+// import TextField from '@mui/material/TextField';
+// import Box from '@mui/material/Box';
 
 function ApplicationFormPage() {
 
-    const { form, onChange, cleanFields } = useForm({nome: "", age: "", text: "", profession: "", country: ""})
+    const { form, onChange, cleanFields } = useForm({ name: "", age: "", text: "", profession: "", country: "" })
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
     const { id } = useParams()
-  
+
+    console.log(form.age)
 
     const apllyToTrip = (event) => {
         event.preventDefault();
         setLoading(true);
 
-        const body = {
-            "name": form.nome,
-            "age": form.age,
-            "applicationText": form.text,
-            "profession": form.profession,
-            "country": form.country
-          }
+        // const body = {
+        //     "name": form.name,
+        //     "age": form.age,
+        //     "applicationText": form.text,
+        //     "profession": form.profession,
+        //     "country": form.country
+        // }
 
-        axios.post(`${URL_BASE}/trips/${id}/apply`, body)
+        axios.post(`${URL_BASE}/trips/${id}/apply`, form)
             .then(() => {
                 setLoading(false)
                 confereAge()
@@ -46,50 +52,60 @@ function ApplicationFormPage() {
         }
     }
 
-   
+
     return (
         <div>
             <Header
                 nome={"forms"}
             />
 
-            {loading && <h3>Carregando...</h3>}
-            {!loading && error && <p>Deu Ruim!</p>}
+            {loading && <CircularProgress />}
+            {!loading && error && <Alert severity="error">
+                <AlertTitle>Error</AlertTitle>
+                This is an error alert — <strong>check it out!</strong>
+            </Alert>}
 
-            {/* {`${nome}`} */}
+                {/* {`${nome}`} */}
             <form onSubmit={apllyToTrip}>
-                <input value={form.nome}
+                <input
+                    value={form.name}
                     onChange={onChange}
-                    placeholder="Digite seu nome completo"
+                    placeholder="Nome"
                     name="nome"
                     required
-                    ></input>
-                <input value={form.age}
+                ></input>
+                <input
+                    value={form.age}
                     onChange={onChange}
-                    placeholder="Digite sua idade"
+                    placeholder="Idade"
                     name="age"
                     required
-                    ></input>
-                <input value={form.text}
+                ></input>
+                <input
+                    value={form.text}
                     onChange={onChange}
-                    placeholder="Digite o porquê quer viajar"
+                    placeholder="Porquê quer viajar"
                     name="text"
-                    ></input>
-                <input value={form.profession}
+                    multiline
+                ></input>
+                <input
+                    value={form.profession}
                     onChange={onChange}
-                    placeholder="Digite sua profissão"
+                    placeholder="Profissão"
                     name="profession"
-                    ></input>
-                <input value={form.country}
+                ></input>
+                <input
+                    value={form.country}
                     onChange={onChange}
-                    placeholder="Digite seu país"
+                    placeholder="País"
                     name="country"
                     required
-                    ></input>
-                <Button>Apply</Button>
+                ></input>
+
+                <Button variant="outlined">Apply</Button>
             </form>
 
-        </div>
+        </div >
     )
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Rotas } from "./Routes/Rotas"
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import theme from "./components/theme";
 
 function App() {

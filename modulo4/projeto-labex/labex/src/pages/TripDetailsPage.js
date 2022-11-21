@@ -4,6 +4,7 @@ import { useProtectedPage } from "../Hooks/useProtectedPage"
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import axios from "axios";
+import { Button } from "@material-ui/core";
 
 
 export default function TripDetailsPage() {
@@ -59,8 +60,8 @@ export default function TripDetailsPage() {
             <p>Texto: {cand.applicationText}</p>
             <p>Idade: {cand.age}</p>
             <p>País: {cand.country}</p>
-            <button onClick={() => decideCandidate(true)} >aceitar</button>
-            <button onClick={() => decideCandidate(false)} >reprovar</button>
+            <Button variant="outlined" onClick={() => decideCandidate(true)} >aceitar</Button>
+            <Button variant="outlined" onClick={() => decideCandidate(false)} >reprovar</Button>
             {/* {decideCandidate === true ? listaCandidatos : listaVazia} */}
         </div>
     })
