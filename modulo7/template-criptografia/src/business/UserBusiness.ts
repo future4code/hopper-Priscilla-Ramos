@@ -6,23 +6,33 @@ import {
   EditUserInputDTO,
   EditUserInput,
   LoginInputDTO,
+  UserRoles,
 } from "../model/user";
+import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import { TokenGenerator } from "../services/TokenGenerator";
 
-const idGenerator = new IdGenerator()
-const tokenGenerator = new TokenGenerator()
+const idGenerator = new IdGenerator();
+const hashManager = new HashManager();
+const tokenGenerator = new TokenGenerator();
 const userDatabase = new UserDatabase();
 
 export class UserBusiness {
   public createUser = async (input: UserInputDTO): Promise<string> => {
     try {
-      const { name, nickname, email, password } = input;
+      const { name, nickname, email, password, role } = input;
 
       if (!name || !nickname || !email || !password) {
         throw new CustomError(
           400,
           'Preencha os campos "name","nickname", "email" e "password"'
+        );
+      }
+
+      if (role !== 'ADMIN' && role !== 'NORMAL') {
+        throw new CustomError(
+          400,
+          'Preencha os campos "role" corretamente'
         );
       }
 
@@ -36,16 +46,19 @@ export class UserBusiness {
 
       const id: string = idGenerator.generateId()
 
+      const hashPassword: string = await hashManager.hash(password)
+
       const user: user = {
         id,
         name,
         nickname,
         email,
-        password,
+        password: hashPassword,
+        role: UserRoles[role]
       };
    
       await userDatabase.insertUser(user);
-      const token = tokenGenerator.generateToken(id)
+      const token = tokenGenerator.generateToken(id, user.role)
 
       return token
     } catch (error: any) {
@@ -74,11 +87,13 @@ export class UserBusiness {
         throw new UserNotFound()
       }
 
-      if(password !== user.password){ 
+      const isValidPassword = await hashManager.compare(password, user.password);
+
+      if(!isValidPassword !== user.password){ 
         throw new InvalidPassword()
       }
 
-      const token = tokenGenerator.generateToken(user.id)
+      const token = tokenGenerator.generateToken(user.id, user.role)
      
       return token
     } catch (error: any) {
@@ -97,8 +112,8 @@ export class UserBusiness {
         );
       }
 
-      const data = tokenGenerator.tokenData(token)
-
+      const data = tokenGenerator.tokenData(token);
+      
       if(!data.id) {
         throw new Unauthorized()
       }
@@ -107,13 +122,16 @@ export class UserBusiness {
         throw new InvalidName();
       }
 
+      if(data.role !== UserRoles.ADMIN){
+        throw new Unauthorized();
+      }
+
       const editUserInput: EditUserInput = {
         id,
         name,
         nickname,
       };
 
-      const userDatabase = new UserDatabase();
       await userDatabase.editUser(editUserInput);
     } catch (error: any) {
       throw new CustomError(400, error.message);
