@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import ApplicationFormPage from "../Pages/ApplicationFormPage";
-import ListTripsPage from "../Pages/ListTripsPage";
-import AdminHomePage from "../Pages/AdminHomePage";
-import CreateTripPage from "../Pages/CreateTripPage";
-import HomePage from "../Pages/HomePage";
-import LoginPage from "../Pages/LoginPage";
-import TripDetailsPage from "../Pages/TripDetailsPage"
-import ErrorPage from "../Pages/ErrorPage";
+import ApplicationFormPage from "../pages/ApplicationFormPage";
+import ListTripsPage from "../pages/ListTripsPage";
+import AdminHomePage from "../pages/AdminHomePage";
+import CreateTripPage from "../pages/CreateTripPage";
+import HomePage from "../pages/HomePage";
+import LoginPage from "../pages/LoginPage";
+import TripDetailsPage from "../pages/TripDetailsPage"
+import ErrorPage from "../pages/ErrorPage";
 
 export const Rotas = () => {
   return (
