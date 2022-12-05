@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+// import useForm from "./useForm"
 import axios from "axios";
 
 export default function useRequestData(url) {
@@ -6,10 +7,8 @@ export default function useRequestData(url) {
     const [data, setData] = useState(undefined);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("")
-
-    useEffect(() => {GetTrip() }, [url]);
-
-    const GetTrip = () => {
+    
+    useEffect(() => {
         setIsLoading(true)
         axios.get(url)
             .then((res) => {
@@ -19,11 +18,13 @@ export default function useRequestData(url) {
             }).catch((error) => {
                 setIsLoading(false)
                 setError(error)
+
             });
 
-    }
+    }, [url]);
 
-    return [data, isLoading, error, GetTrip]
+    return [data, isLoading, error]
 };
 
 
+// export default function useRequestData2(url) {}

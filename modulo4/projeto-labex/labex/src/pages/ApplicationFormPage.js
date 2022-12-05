@@ -18,24 +18,19 @@ function ApplicationFormPage() {
     const [error, setError] = useState("")
     const { id } = useParams()
 
+    console.log(form.country)
+    console.log(form.name)
     console.log(form.age)
+    console.log(form.text)
+    console.log(form.profession)
 
     const apllyToTrip = (event) => {
         event.preventDefault();
         setLoading(true);
 
-        // const body = {
-        //     "name": form.name,
-        //     "age": form.age,
-        //     "applicationText": form.text,
-        //     "profession": form.profession,
-        //     "country": form.country
-        // }
-
         axios.post(`${URL_BASE}/trips/${id}/apply`, form)
             .then(() => {
                 setLoading(false)
-                confereAge()
                 alert("Obrigada por se inscrever")
                 cleanFields()
             })
@@ -44,13 +39,7 @@ function ApplicationFormPage() {
                 setError(error.data)
                 cleanFields()
             })
-    }
-
-    const confereAge = () => {
-        if (form.age < 18) {
-            alert("Você não pode se inscrever, é menor de idade!")
-        }
-    }
+    };
 
 
     return (
@@ -65,40 +54,39 @@ function ApplicationFormPage() {
                 This is an error alert — <strong>check it out!</strong>
             </Alert>}
 
-                {/* {`${nome}`} */}
             <form onSubmit={apllyToTrip}>
                 <input
                     value={form.name}
                     onChange={onChange}
-                    placeholder="Nome"
-                    name="nome"
+                    placeholder={"Nome"}
+                    name={"name"}
                     required
                 ></input>
                 <input
                     value={form.age}
                     onChange={onChange}
-                    placeholder="Idade"
-                    name="age"
+                    placeholder={"Idade"}
+                    name={"age"}
+                    min={18}
                     required
                 ></input>
                 <input
                     value={form.text}
                     onChange={onChange}
-                    placeholder="Porquê quer viajar"
-                    name="text"
-                    multiline
+                    placeholder={"Porquê quer viajar"}
+                    name={"text"}
                 ></input>
                 <input
                     value={form.profession}
                     onChange={onChange}
-                    placeholder="Profissão"
-                    name="profession"
+                    placeholder={"Profissão"}
+                    name={"profession"}
                 ></input>
                 <input
                     value={form.country}
                     onChange={onChange}
-                    placeholder="País"
-                    name="country"
+                    placeholder={"País"}
+                    name={"country"}
                     required
                 ></input>
 
