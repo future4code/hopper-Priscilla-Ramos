@@ -1,0 +1,4 @@
+node-modules
+.env
+build
+request.rest

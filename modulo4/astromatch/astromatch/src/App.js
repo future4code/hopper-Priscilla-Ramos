@@ -41,7 +41,7 @@ function App() {
       <button onClick={()=>mudaTela("Match")}>Lista Matches</button>
       <button onClick={()=>mudaTela("Home")}>Voltar</button>
       
-      <Delete />
+      <Delete/>
       </Botao>
 
     </div >
