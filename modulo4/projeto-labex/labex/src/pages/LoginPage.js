@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { URL_BASE } from "../components/UrlBase";
 import axios from "axios";
+import Button from '@mui/material/Button';
+
 
 export default function LoginPage() {
 
@@ -35,7 +37,7 @@ export default function LoginPage() {
             <Header
             nome={"login"}
             />
-
+        
             <input
                 type="email"
                 value={email}
@@ -47,10 +49,11 @@ export default function LoginPage() {
                 type="password"
                 value={password}
                 onChange={(e)=>setPassword(e.target.value)}
-                placeholder="senha"
+                label="senha"
             />
 
-            <button onClick={() => submitLogin()}>enviar</button>
+            <Button variant="outlined" onClick={() => submitLogin()}>enviar</Button>
+       
         </div>
     )
 }

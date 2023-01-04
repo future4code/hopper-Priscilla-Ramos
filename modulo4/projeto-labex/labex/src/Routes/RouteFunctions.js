@@ -18,7 +18,7 @@ export const goToAdminTipsCreate =(navigate)=>{
     navigate("/admin/trips/create")
 }
 
-export const goToAplly =(navigate, id)=>{
+export const goToAplly =(navigate, id, name)=>{
     navigate(`/trips/application/${id}`)
 }
 

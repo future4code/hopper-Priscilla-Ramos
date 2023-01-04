@@ -6,6 +6,10 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header"
 import useRequestData from "../Hooks/UseRequestData"
 import axios from "axios";
+import { Button } from "@material-ui/core";
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 export default function AdminHomePage() {
 
@@ -15,7 +19,7 @@ export default function AdminHomePage() {
 
     useProtectedPage();
 
-    
+
     const deleteTrip = (id) => {
         axios.delete(`${URL_BASE}/trips/${id}`, {
             headers: {
@@ -33,7 +37,7 @@ export default function AdminHomePage() {
     const listaViagens = data && data.map((viagem) => {
         return <div key={viagem.id}>
             <h3 onClick={() => navigate(`/admin/trips/${viagem.id}`)}> Viagem: {viagem.name}</h3>
-            <button onClick={() => deleteTrip(viagem.id)}>Delete</button>
+            <Button variant="outlined" onClick={() => deleteTrip(viagem.id)}>Delete</Button>
         </div>
     })
 
@@ -43,11 +47,14 @@ export default function AdminHomePage() {
             <Header
                 nome={"admin home"}
             />
-            {loading && <p>Carregando...</p>}
-            {!loading && error && <p>Deu Ruim!</p>}
+            {loading && <CircularProgress />}
+            {!loading && error && <Alert severity="error">
+                <AlertTitle>Error</AlertTitle>
+                This is an error alert — <strong>check it out!</strong>
+            </Alert>}
             {!loading && data && data.length > 0 && listaViagens}
             {!loading && data && data.length === 0 && <p>Não há viagens!</p>}
-            
+
         </div>
     )
 }

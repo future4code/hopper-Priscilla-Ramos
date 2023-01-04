@@ -1,11 +1,13 @@
 import React from "react";
-import {Rotas} from "./Routes/Rotas"
+import { Rotas } from "./Routes/Rotas"
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "./components/theme";
 
 function App() {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Rotas />
-    </div>
+    </ThemeProvider>
   );
 }
 
