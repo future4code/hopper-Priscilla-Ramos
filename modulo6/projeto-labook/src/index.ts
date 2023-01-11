@@ -1,3 +1,9 @@
+
+import express, { Express } from "express"
+import cors from "cors"
+import { userRouter } from "./routes/UserRouter"
+import { postRouter } from "./routes/PostRouter"
+=======
 /**************************** IMPORTS ******************************/
 
 import express, { Express, Request, Response } from "express"
@@ -23,10 +29,24 @@ export const connection: Knex = knex({
    }
 })
 
+
 const app: Express = express()
 app.use(express.json())
 app.use(cors())
 
+
+// ----CreateUser----
+app.use('/user', userRouter)
+// ----InsertFriend----
+app.use('/user', userRouter)
+// ----GetAllUsers----
+app.use('/user', userRouter)
+// ----CreatePost----
+app.use('/post', postRouter)
+// ----GetPost----
+app.use('/post', postRouter)
+
+=======
 /**************************** TYPES ******************************/
 
 type authenticationData = {
@@ -151,6 +171,7 @@ app.get('/posts/:id', async (req: Request, res: Response) => {
 })
 
 /**************************** SERVER INIT ******************************/
+
 
 app.listen(3003, () => {
    console.log("Server running on port 3003")
